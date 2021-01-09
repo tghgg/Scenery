@@ -60,7 +60,6 @@ tracks/0/keys = {
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
-light_mask = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -86,17 +85,18 @@ smoothing_speed = 3.0
 [node name="Pan" type="Tween" parent="Camera2D"]
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -19.3494 )
 frames = SubResource( 1 )
 animation = "idle_front"
 playing = true
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 19.4454 )
+position = Vector2( 0, 0.0960197 )
 shape = SubResource( 6 )
 
 [node name="TalkBubble" type="Node2D" parent="."]
 light_mask = 2
-position = Vector2( 53.5143, 0 )
+position = Vector2( 53.5143, -19.3494 )
 z_index = 1
 script = ExtResource( 5 )
 
@@ -105,6 +105,7 @@ light_mask = 0
 material = SubResource( 7 )
 position = Vector2( 57.4061, -100.705 )
 frames = ExtResource( 4 )
+frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TalkBubble"]

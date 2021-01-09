@@ -58,8 +58,8 @@ func has_dialogue() -> bool:
 func disable() -> void:
 	json_scripts.clear()
 
-# Start a dialogue
-func talk() -> void:
+	
+func interact() -> void:
 	if has_dialogue():
 		Global.dialogue_system.set_is_dialogue_happening(true)
 

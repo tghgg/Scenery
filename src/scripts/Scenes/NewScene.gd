@@ -9,11 +9,11 @@ export (Array, String, FILE) var music_to_play = [""]
 export (bool) var temporary_song = false
 export (bool) var stop_music = false
 
-onready var map = $BG/Map
+onready var map = $BG
 onready var cg_handler : CgHandler = $CGHandler
 onready var transitioner : Transitioner = $Transitioner
 onready var effects_controller : EffectsController = $Effects
-onready var characters = map.get_node("Base/Characters")
+onready var characters = map.get_node("WorldLayer")
 onready var level_sprite : Sprite = map.get_node("Base/Sprite")
 
 onready var player : Player

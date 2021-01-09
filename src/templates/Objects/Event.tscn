@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://src/Templates/Components/InteractableComponent.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/scripts/Scenes/Event.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "start_event"
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 34.6835
+height = 0.0
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 29.75
+height = 0.0
+
+[node name="Event" type="StaticBody2D"]
+collision_layer = 0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/start_event = SubResource( 1 )
+
+[node name="InteractableComponent" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -15.2787 )
+looping = true
+
+[node name="Area2D" parent="InteractableComponent" index="0"]
+visible = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="InteractableComponent/Area2D" index="0"]
+visible = false
+position = Vector2( 0, 8.96681 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -15.2787 )
+frames = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+[connection signal="area_entered" from="InteractableComponent/Area2D" to="." method="_on_Area2D_area_entered"]
+
+[editable path="InteractableComponent"]

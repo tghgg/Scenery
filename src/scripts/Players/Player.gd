@@ -8,12 +8,6 @@ const movements = {
 	WALKING = "walking"
 }
 
-# Color of the name on the dialogue box
-export (Color) var color
-
-# How high / low the voice is
-export (float, 0.0, 1.9) var voice_pitch
-
 export (int) var speed_scale := 55
 
 export (bool) var talk_on_load := false
@@ -48,7 +42,7 @@ func _ready() -> void:
 		print_debug("Auto-set camera limits may cause a crash. Disable 'Auto Set Camera Limit' on the player character if it happens.")
 
 		# HACK: Must use get_node() with stringly typed names here unfortunately
-		var map = get_tree().current_scene.get_node("BG/Map")
+		var map = get_tree().current_scene.get_node("BG/BaseLayer")
 		camera.limit_right = map.get_used_rect().size.x * map.scale.x * map.cell_size.x
 		camera.limit_bottom = map.get_used_rect().size.y * map.scale.y * map.cell_size.y
 
@@ -104,7 +98,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed(Global.player_input.INTERACT) and Global.get_current_body():
 			print_debug("Talking to " + Global.get_current_body().parent.name)
 			talk_bubble.hide()
-			Global.get_current_body().talk()
+			Global.get_current_body().interact()
 
 		# Vertical movement
 		if Input.is_action_pressed(Global.player_input.MOVE_UP):
