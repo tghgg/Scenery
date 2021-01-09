@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Templates/BaseScene/ExitNode.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Templates/Objects/Underground/ElevatorDoor.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=1]
+tracks/0/type = "value"
+tracks/0/path = NodePath("../ElevatorDoor:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.203922, 0.203922, 0.203922, 1 ) ]
+}
+
+[node name="ElevatorExitNode" instance=ExtResource( 1 )]
+position = Vector2( 0, 112.303 )
+z_index = 0
+
+[node name="CollisionPolygon2D" parent="." index="0"]
+position = Vector2( -595.302, -518.203 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+anims/open = SubResource( 1 )
+
+[node name="ElevatorDoor" parent="." index="2" instance=ExtResource( 2 )]
+position = Vector2( 20.1298, -217.19 )
+rotation = 5.07036e-06
+scale = Vector2( 0.735, 0.735 )

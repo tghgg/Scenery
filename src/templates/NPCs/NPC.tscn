@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/textures/UI/icons/icon.png" type="Texture" id=3]
+[ext_resource path="res://assets/characters/generic/npc.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/vfx/light/player_light.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 49.7911, 24.1875 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 8.23276
+height = 0.0
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="GenericNPC" type="StaticBody2D"]
+scale = Vector2( 0.93461, 1.19569 )
+z_index = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( -2.91309, 57.29 )
+scale = Vector2( 0.233285, 0.0890737 )
+texture = ExtResource( 5 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.8, 0.8 )
+frames = SubResource( 1 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="."]
+position = Vector2( -1.02951, 41.74 )
+shape = SubResource( 2 )
+
+[node name="InteractableArea" type="Area2D" parent="."]
+scale = Vector2( 2.73996, 2.46791 )
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+position = Vector2( -1.06123, 18.8387 )
+scale = Vector2( 2.41862, -1.36485 )
+shape = SubResource( 3 )
+
+[node name="Face" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 4 )
+
+[node name="MovementHandler" type="AnimationPlayer" parent="."]

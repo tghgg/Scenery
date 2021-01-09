@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/textures/vfx/light/spot.png" type="Texture" id=2]
+
+[node name="Skylight" type="Light2D"]
+position = Vector2( 1260.88, 1843.42 )
+scale = Vector2( 30.9292, 31.729 )
+texture = ExtResource( 2 )
+texture_scale = 0.2
+color = Color( 0.941176, 0.905882, 0.0509804, 0.486275 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )

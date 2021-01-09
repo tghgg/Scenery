@@ -1,0 +1,203 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Templates/Levels/BaseTileScene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Templates/BaseScene/ExitNode.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/tilesets/town/helen_house/Home.tres" type="TileSet" id=3]
+[ext_resource path="res://src/Templates/VFX/Light/MildHighlight.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Templates/Objects/InteractableObject.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Templates/VFX/Particles/Dust.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Templates/Levels/ShadowTileset.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 238.641, 112.253 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 193.773, 97.6462 )
+
+[node name="Basement" instance=ExtResource( 1 )]
+
+[node name="Map" parent="BG" index="0"]
+tile_set = ExtResource( 3 )
+tile_data = PoolIntArray( 0, -2147483646, 0, 1, -2147483646, 0, 2, -2147483646, 0, 3, -2147483646, 0, 4, -2147483646, 0, 5, -2147483646, 0, 6, -2147483646, 0, 7, -2147483646, 0, 8, -2147483646, 0, 9, -2147483646, 0, 10, -2147483646, 0, 11, -2147483646, 0, 12, 536870922, 0, 13, 536870922, 0, 14, -2147483646, 0, 65536, -2147483646, 0, 65537, -2147483646, 0, 65538, -2147483646, 0, 65539, -2147483646, 0, 65540, -2147483647, 0, 65541, -2147483647, 0, 65542, -2147483647, 0, 65543, -2147483647, 0, 65544, -2147483647, 0, 65545, -2147483647, 0, 65546, -2147483646, 0, 65547, -2147483646, 0, 65548, 536870922, 0, 65549, 536870922, 0, 65550, -2147483646, 0, 131072, -2147483646, 0, 131073, -2147483646, 0, 131074, -2147483646, 0, 131075, -2147483646, 0, 131076, -2147483647, 0, 131077, -2147483647, 0, 131078, -2147483647, 0, 131079, -2147483647, 0, 131080, -2147483647, 0, 131081, -2147483647, 0, 131082, -2147483646, 0, 131083, -2147483646, 0, 131084, -2147483643, 0, 131085, -2147483643, 0, 131086, -2147483646, 0, 196608, -2147483646, 0, 196609, -2147483646, 0, 196610, -2147483646, 0, 196611, -2147483646, 0, 196612, -2147483643, 0, 196613, -2147483643, 0, 196614, -2147483643, 0, 196615, -2147483643, 0, 196616, -2147483643, 0, 196617, -2147483643, 0, 196618, -2147483646, 0, 196619, -2147483646, 0, 196620, -2147483643, 0, 196621, -2147483643, 0, 196622, -2147483646, 0, 262144, -2147483646, 0, 262145, -2147483646, 0, 262146, -2147483646, 0, 262147, -2147483646, 0, 262148, -2147483643, 0, 262149, -2147483643, 0, 262150, -2147483643, 0, 262151, -2147483643, 0, 262152, -2147483643, 0, 262153, -2147483643, 0, 262154, -2147483646, 0, 262155, -2147483646, 0, 262156, -2147483643, 0, 262157, -2147483643, 0, 262158, -2147483646, 0, 327680, -2147483646, 0, 327681, -2147483646, 0, 327682, -2147483646, 0, 327683, -2147483646, 0, 327684, -2147483643, 0, 327685, -2147483643, 0, 327686, -2147483643, 0, 327687, -2147483643, 0, 327688, -2147483643, 0, 327689, -2147483643, 0, 327690, -2147483647, 0, 327691, -2147483647, 0, 327692, -2147483643, 0, 327693, -2147483643, 0, 327694, -2147483646, 0, 393216, -2147483646, 0, 393217, -2147483646, 0, 393218, -2147483646, 0, 393219, -2147483646, 0, 393220, -2147483643, 0, 393221, -2147483643, 0, 393222, -2147483643, 0, 393223, -2147483643, 0, 393224, -2147483643, 0, 393225, -2147483643, 0, 393226, -2147483647, 0, 393227, -2147483647, 0, 393228, -2147483643, 0, 393229, -2147483643, 0, 393230, -2147483646, 0, 458752, -2147483646, 0, 458753, -2147483646, 0, 458754, -2147483646, 0, 458755, -2147483646, 0, 458756, -2147483643, 0, 458757, -2147483643, 0, 458758, -2147483643, 0, 458759, -2147483643, 0, 458760, -2147483643, 0, 458761, -2147483643, 0, 458762, -2147483643, 0, 458763, -2147483643, 0, 458764, -2147483643, 0, 458765, -2147483643, 0, 458766, -2147483646, 0, 524288, -2147483646, 0, 524289, -2147483646, 0, 524290, -2147483646, 0, 524291, -2147483646, 0, 524292, -2147483646, 0, 524293, -2147483646, 0, 524294, -2147483646, 0, 524295, -2147483646, 0, 524296, -2147483646, 0, 524297, -2147483646, 0, 524298, -2147483646, 0, 524299, -2147483646, 0, 524300, -2147483646, 0, 524301, -2147483646, 0, 524302, -2147483646, 0, 589824, -2147483646, 0, 589825, -2147483646, 0, 589826, -2147483646, 0, 589827, -2147483646, 0, 589828, -2147483646, 0, 589829, -2147483646, 0, 589830, -2147483646, 0, 589831, -2147483646, 0, 589832, -2147483646, 0, 589833, -2147483646, 0, 589834, -2147483646, 0, 589835, -2147483646, 0, 589836, -2147483646, 0, 589837, -2147483646, 0, 589838, -2147483646, 0, 655360, -2147483646, 0, 655361, -2147483646, 0, 655362, -2147483646, 0, 655363, -2147483646, 0, 655364, -2147483646, 0, 655365, -2147483646, 0, 655366, -2147483646, 0, 655367, -2147483646, 0, 655368, -2147483646, 0, 655369, -2147483646, 0, 655370, -2147483646, 0, 655371, -2147483646, 0, 655372, -2147483646, 0, 655373, -2147483646, 0, 655374, -2147483646, 0 )
+
+[node name="TileMap" type="TileMap" parent="BG/Map" index="0"]
+tile_set = ExtResource( 3 )
+format = 1
+
+[node name="ShadowTileset" parent="BG/Map" index="1" instance=ExtResource( 7 )]
+tile_data = PoolIntArray( 196612, 536870912, 0, 196614, 536870912, 0, 196615, 536870912, 0, 196616, 536870912, 0, 196617, 536870912, 0, 458762, 536870912, 0, 458763, 536870912, 0, 3145792, 536870912, 0, 3145793, 536870912, 0, 3145794, 536870912, 0, 3145795, 536870912, 0, 3145796, 536870912, 0, 3145797, 536870912, 0, 3145798, 536870912, 0, 3145799, 536870912, 0, 3145800, 536870912, 0, 3145801, 536870912, 0, 3145802, 536870912, 0, 3145803, 536870912, 0, 3145804, 536870912, 0, 3145805, 536870912, 0, 3145806, 536870912, 0, 3145807, 536870912, 0, 3145808, 536870912, 0, 3145809, 536870912, 0, 3145810, 536870912, 0, 3145811, 536870912, 0, 3145812, 536870912, 0, 3145813, 536870912, 0, 3145814, 536870912, 0, 3145815, 536870912, 0, 3145816, 536870912, 0, 3145817, 536870912, 0, 3145818, 536870912, 0, 3145819, 536870912, 0, 3145820, 536870912, 0, 3145821, 536870912, 0, 3145822, 536870912, 0, 3145823, 536870912, 0, 3145824, 536870912, 0, 3145825, 536870912, 0, 3145826, 536870912, 0, 3145827, 536870912, 0, 3145828, 536870912, 0, 3145829, 536870912, 0, 3145830, 536870912, 0, 3145831, 536870912, 0, 3145832, 536870912, 0, 3145833, 536870912, 0, 3145834, 536870912, 0, 3145835, 536870912, 0, 3145836, 536870912, 0, 3145837, 536870912, 0, 3145838, 536870912, 0, 3145839, 536870912, 0, 3145840, 536870912, 0, 3145841, 536870912, 0, 3145842, 536870912, 0, 3145843, 536870912, 0, 3145844, 536870912, 0, 3145845, 536870912, 0, 3145846, 536870912, 0, 3145847, 536870912, 0, 3145848, 536870912, 0, 3145849, 536870912, 0, 3145850, 536870912, 0, 3145851, 536870912, 0, 3145852, 536870912, 0, 3145853, 536870912, 0, 3145854, 536870912, 0, 3145855, 536870912, 0, 3145856, 536870912, 0, 3145857, 536870912, 0, 3145858, 536870912, 0, 3145859, 536870912, 0, 3145860, 536870912, 0, 3145861, 536870912, 0, 3145862, 536870912, 0, 3145863, 536870912, 0, 3145864, 536870912, 0, 3145865, 536870912, 0, 3145866, 536870912, 0, 3145867, 536870912, 0, 3145868, 536870912, 0, 3145869, 536870912, 0, 3145870, 536870912, 0, 3145871, 536870912, 0, 3145872, 536870912, 0, 3145873, 536870912, 0, 3145874, 536870912, 0, 3145875, 536870912, 0, 3145876, 536870912, 0, 3145877, 536870912, 0, 3145878, 536870912, 0, 3145879, 536870912, 0, 3145880, 536870912, 0, 3145881, 536870912, 0, 3145882, 536870912, 0, 3145883, 536870912, 0, 3145884, 536870912, 0, 3145885, 536870912, 0, 3145886, 536870912, 0, 3145887, 536870912, 0, 7340192, 536870912, 0, 7340193, 536870912, 0, 7340194, 536870912, 0, 7340195, 536870912, 0, 7340196, 536870912, 0, 7340197, 536870912, 0, 7340198, 536870912, 0, 7340199, 536870912, 0, 7340200, 536870912, 0, 7340201, 536870912, 0, 7340202, 536870912, 0, 7340203, 536870912, 0, 7340204, 536870912, 0, 7340205, 536870912, 0, 7340206, 536870912, 0, 7340207, 536870912, 0, 7340208, 536870912, 0, 7340209, 536870912, 0, 7340210, 536870912, 0, 7340211, 536870912, 0, 7340212, 536870912, 0, 7340213, 536870912, 0, 7340214, 536870912, 0, 7340215, 536870912, 0, 7340216, 536870912, 0, 7340217, 536870912, 0, 7340218, 536870912, 0, 7340219, 536870912, 0, 7340220, 536870912, 0, 7340221, 536870912, 0, 7340222, 536870912, 0, 7340223, 536870912, 0 )
+
+[node name="Sprite" parent="BG/Map/Base" index="0"]
+texture = null
+
+[node name="interactableObject" parent="BG/Map/Base/Sprite" index="0" instance=ExtResource( 5 )]
+position = Vector2( 958.583, 356.943 )
+rotation = 0.524783
+scale = Vector2( 1.50477, 3.41227 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Sprite/interactableObject" index="0"]
+visible = false
+
+[node name="Area2D" parent="BG/Map/Base/Sprite/interactableObject/InteractableComponent" index="0"]
+monitorable = false
+
+[node name="interactableObject2" parent="BG/Map/Base/Sprite" index="1" instance=ExtResource( 5 )]
+position = Vector2( 1058.58, 396.943 )
+rotation = 0.120769
+scale = Vector2( 4.35248, 1.07291 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Sprite/interactableObject2" index="0"]
+visible = false
+
+[node name="interactableObject3" parent="BG/Map/Base/Sprite" index="2" instance=ExtResource( 5 )]
+position = Vector2( 1130.77, 362.943 )
+rotation = 0.421833
+scale = Vector2( 4.35248, 1.07291 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Sprite/interactableObject3" index="0"]
+visible = false
+
+[node name="interactableObject4" parent="BG/Map/Base/Sprite" index="3" instance=ExtResource( 5 )]
+position = Vector2( 1130.58, 308.943 )
+rotation = 0.285784
+scale = Vector2( 4.35248, 1.07291 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Sprite/interactableObject4" index="0"]
+visible = false
+
+[node name="Node2D" type="Node2D" parent="BG/Map/Base/Objects" index="0"]
+position = Vector2( 637.415, 963.258 )
+
+[node name="interactableObject7" parent="BG/Map/Base/Objects/Node2D" index="0" instance=ExtResource( 5 )]
+position = Vector2( -15.5887, -128.423 )
+rotation = -0.0930918
+scale = Vector2( 3.45992, 5.95494 )
+
+[node name="interactableObject5" parent="BG/Map/Base/Objects/Node2D" index="1" instance=ExtResource( 5 )]
+position = Vector2( 94.7909, -70.9042 )
+rotation = -0.23169
+
+[node name="InteractableComponent" parent="BG/Map/Base/Objects/Node2D/interactableObject5" index="0"]
+visible = false
+
+[node name="Area2D" parent="BG/Map/Base/Objects/Node2D/interactableObject5/InteractableComponent" index="0"]
+monitorable = false
+
+[node name="CollisionShape2D" parent="BG/Map/Base/Objects/Node2D/interactableObject5/InteractableComponent/Area2D" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="BG/Map/Base/Objects/Node2D/interactableObject5" index="1"]
+position = Vector2( -108.183, -29.2418 )
+rotation = -0.258461
+scale = Vector2( 1.6108, 4.4066 )
+
+[node name="BodyShape" parent="BG/Map/Base/Objects/Node2D/interactableObject5" index="2"]
+visible = true
+position = Vector2( -150.054, 45.0999 )
+rotation = 0.244037
+shape = SubResource( 2 )
+disabled = false
+
+[node name="interactableObject6" parent="BG/Map/Base/Objects/Node2D" index="2" instance=ExtResource( 5 )]
+position = Vector2( 52.4111, -2.42273 )
+rotation = -1.64995
+scale = Vector2( 2.17872, 2.93606 )
+
+[node name="Node2D2" type="Node2D" parent="BG/Map/Base/Objects" index="1"]
+position = Vector2( 636.091, -44.7416 )
+
+[node name="interactableObject7" parent="BG/Map/Base/Objects/Node2D2" index="0" instance=ExtResource( 5 )]
+position = Vector2( 85.6115, 287.594 )
+rotation = -0.0930918
+scale = Vector2( 3.45992, 5.95494 )
+
+[node name="t" parent="BG/Map/Base/Objects/Node2D2" index="1" instance=ExtResource( 5 )]
+position = Vector2( 45.5473, 387.491 )
+rotation = 0.201222
+
+[node name="InteractableComponent" parent="BG/Map/Base/Objects/Node2D2/t" index="0"]
+visible = false
+
+[node name="Sprite" parent="BG/Map/Base/Objects/Node2D2/t" index="1"]
+position = Vector2( -108.183, -29.2418 )
+rotation = -0.258461
+scale = Vector2( 1.6108, 4.4066 )
+
+[node name="BodyShape" parent="BG/Map/Base/Objects/Node2D2/t" index="2"]
+visible = true
+position = Vector2( 17.6508, -2.08443 )
+rotation = -0.339735
+shape = SubResource( 2 )
+disabled = false
+
+[node name="t2" parent="BG/Map/Base/Objects/Node2D2" index="2" instance=ExtResource( 5 )]
+position = Vector2( 22.2381, 439.021 )
+rotation = -1.64995
+scale = Vector2( 2.17872, 2.93606 )
+
+[node name="ExitNode" parent="BG/Map" index="3"]
+position = Vector2( 1656.68, 345.425 )
+rotation = -3.14159
+scale = Vector2( 1.13114, 1.37322 )
+
+[node name="ExitNode2" parent="BG/Map" index="5" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 698, 462 )
+rotation = -3.14159
+scale = Vector2( 0.809698, 1.24083 )
+
+[node name="CanvasModulate" parent="Effects" index="0"]
+color = Color( 0.247059, 0.247059, 0.180392, 1 )
+
+[node name="MildHighlight" parent="Effects" index="1" instance=ExtResource( 4 )]
+position = Vector2( 919.616, 329.529 )
+scale = Vector2( 14.7068, 14.6626 )
+color = Color( 0.968627, 0.937255, 0.592157, 1 )
+
+[node name="MildHighlight3" parent="Effects" index="2" instance=ExtResource( 4 )]
+position = Vector2( 385.172, 335.976 )
+scale = Vector2( 8.40119, 8.40119 )
+energy = 0.5
+
+[node name="MildHighlight2" parent="Effects" index="3" instance=ExtResource( 4 )]
+position = Vector2( 1678.52, 184.155 )
+scale = Vector2( 9.11538, 12.5785 )
+energy = 0.7
+
+[node name="MildHighlight4" parent="Effects" index="4" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 701.359, 284.661 )
+scale = Vector2( 2.53935, 3.40625 )
+color = Color( 1, 1, 1, 0.235294 )
+mode = 1
+
+[node name="MildHighlight5" parent="Effects" index="5" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 699.921, 194.357 )
+scale = Vector2( 2.41406, 3.40625 )
+color = Color( 1, 1, 1, 0.235294 )
+energy = 1.13
+mode = 1
+
+[node name="Dust" parent="Effects" index="6" instance=ExtResource( 6 )]
+position = Vector2( 984.42, 727.17 )
+
+[editable path="BG/Map"]
+
+[editable path="BG/Map/Base/Sprite/interactableObject"]
+
+[editable path="BG/Map/Base/Sprite/interactableObject/InteractableComponent"]
+
+[editable path="BG/Map/Base/Sprite/interactableObject2"]
+
+[editable path="BG/Map/Base/Sprite/interactableObject3"]
+
+[editable path="BG/Map/Base/Sprite/interactableObject4"]
+
+[editable path="BG/Map/Base/Objects/Node2D/interactableObject5"]
+
+[editable path="BG/Map/Base/Objects/Node2D/interactableObject5/InteractableComponent"]
+
+[editable path="BG/Map/Base/Objects/Node2D2/t"]
+
+[editable path="BG/Map/Base/Objects/Node2D2/t2"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Scripts/NPC/NPC.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/vfx/light/spot.png" type="Texture" id=2]
+[ext_resource path="res://src/Templates/Components/InteractableComponent.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/characters/generic/npc.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 49.7911, 24.1875 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="GenericNPC" type="StaticBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 5.16626, 60.6916 )
+scale = Vector2( 1.18008, 0.450583 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -15.8919 )
+scale = Vector2( 0.8, 0.924156 )
+frames = SubResource( 1 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="."]
+position = Vector2( -1.02951, 41.74 )
+shape = SubResource( 2 )
+
+[node name="Face" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 3 )
+
+[node name="MovementHandler" type="AnimationPlayer" parent="."]
+
+[node name="InteractableComponent" parent="." instance=ExtResource( 3 )]
+
+[node name="Area2D" parent="InteractableComponent" index="0"]
+position = Vector2( 0, 61.7354 )
+monitorable = false
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -1.30422, -19.4844 )
+scale = Vector2( 9.75645, 13.2887 )
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+
+[editable path="InteractableComponent"]

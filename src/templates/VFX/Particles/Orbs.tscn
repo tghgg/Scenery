@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/textures/vfx/particles/orb.png" type="Texture" id=1]
+[ext_resource path="res://src/Templates/VFX/BaseEffect.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "play"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.037037, 0.968254, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 2.04339, 0, 0, Vector2( 0.994186, 0 ), -5.51616, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 600, 1 )
+flag_disable_z = true
+spread = 100.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
+angular_velocity = 20.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 40.0
+angle_random = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[node name="Orbs" instance=ExtResource( 2 )]
+
+[node name="AnimationPlayer" parent="." index="0"]
+root_node = NodePath("../Orbs")
+anims/play = SubResource( 1 )
+
+[node name="Orbs" type="Particles2D" parent="." index="1"]
+position = Vector2( 944.831, 273.801 )
+z_index = 10
+z_as_relative = false
+emitting = false
+amount = 30
+lifetime = 15.0
+visibility_rect = Rect2( -1000, -500, 4000, 2000 )
+process_material = SubResource( 6 )
+texture = ExtResource( 1 )

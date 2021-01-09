@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Templates/VFX/BaseEffect.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+onready var player : AnimationPlayer = $AnimationPlayer
+
+func _ready():
+	player.play(\"play\")
+
+func play(name := \"play\") -> void:
+	player.play(name)
+
+
+func stop(name := \"stop\") -> void:
+	player.play(name)
+
+
+func pause() -> void:
+	player.stop(false)
+
+
+func play_backwards(name := \"play\") -> void:
+	player.play_backwards(name)
+
+func hide(name := \"hide\") -> void:
+	player.play(name)
+
+
+"
+
+[node name="PanCameraEffect" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+
+[node name="AnimationPlayer" parent="." index="0"]
+root_node = NodePath("..")

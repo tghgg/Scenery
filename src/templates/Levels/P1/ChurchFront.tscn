@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Templates/VFX/Light/SkyLight.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Templates/Levels/BaseTileScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/levels/town/Plane 1/p1-2.png.png" type="Texture" id=7]
+[ext_resource path="res://src/Templates/VFX/Particles/Leaves.tscn" type="PackedScene" id=8]
+
+[node name="ChurchFront" instance=ExtResource( 2 )]
+
+[node name="Sprite" parent="BG/Map/Base" index="0"]
+texture = ExtResource( 7 )
+
+[node name="ExitNode" parent="BG/Map" index="1"]
+position = Vector2( 1379.71, 1496.55 )
+rotation = -2.48756
+
+[node name="Right" parent="BG/Map/Bounds" index="1"]
+position = Vector2( 3000.54, 1138.71 )
+
+[node name="Bottom" parent="BG/Map/Bounds" index="3"]
+position = Vector2( 919.544, 2514.71 )
+
+[node name="CanvasModulate" parent="Effects" index="0"]
+color = Color( 0.439216, 0.482353, 0.631373, 1 )
+
+[node name="Skylight" parent="Effects" index="1" instance=ExtResource( 1 )]
+position = Vector2( 2066.25, 731.579 )
+scale = Vector2( 1.2, 1.2 )
+texture_scale = 50.0
+
+[node name="FallingLeaves" parent="Effects" index="2" instance=ExtResource( 8 )]
+
+[editable path="BG/Map"]

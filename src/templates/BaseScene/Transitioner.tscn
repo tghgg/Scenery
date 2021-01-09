@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/scripts/Scenes/Transition.gd" type="Script" id=1]
+[ext_resource path="res://src/Templates/VFX/disable_canvas_modulate_tint_material.tres" type="Material" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[sub_resource type="Animation" id=2]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 8.72941, 5.78039, 0 ), Color( 0.58, 39.54, 1.16, 1 ), Color( 0, 8.72941, 5.78039, 0 ) ]
+}
+
+[node name="Transitioner" type="Node2D"]
+visible = false
+light_mask = 0
+z_index = 1000
+z_as_relative = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="BlackScreen" type="Sprite" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+light_mask = 0
+material = ExtResource( 4 )
+position = Vector2( 904.716, 524.107 )
+scale = Vector2( 2508.56, 2830.28 )
+
+[node name="FadeOut" type="Tween" parent="."]
+
+[node name="FadeIn" type="Tween" parent="."]
+
+[node name="Silhoulette" type="Sprite" parent="."]
+modulate = Color( 0, 8.72941, 5.78039, 0 )
+self_modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 1 )
+position = Vector2( -423.94, -400.59 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Silhoulette"]
+anims/fade = SubResource( 2 )

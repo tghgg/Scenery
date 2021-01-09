@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/scripts/UI/Control.gd" type="Script" id=1]
+[ext_resource path="res://addons/MSG_System/fonts/open_sans/OpenSans-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://src/Templates/UI/SettingsMenu.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="UI" type="CanvasLayer"]
+layer = 128
+script = ExtResource( 1 )
+
+[node name="SaveIndicator" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Popup" type="Popup" parent="SaveIndicator"]
+visible = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 9.25018
+margin_top = 5.20953
+margin_right = 9.25018
+margin_bottom = 5.20953
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="SaveIndicator/Popup"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -112.009
+margin_top = -117.328
+margin_right = -8.00903
+margin_bottom = -13.3281
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SaveIndicator/Popup/TextureRect"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -34.6208
+margin_top = -32.4707
+margin_right = 37.3792
+margin_bottom = 1.52925
+custom_fonts/font = SubResource( 1 )
+text = "Saving"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SaveIndicator/Popup"]
+anims/fade = SubResource( 2 )
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 5 )]
+visible = false
+[connection signal="about_to_show" from="SaveIndicator/Popup" to="." method="_on_Popup_about_to_show"]
+[connection signal="popup_hide" from="SaveIndicator/Popup" to="." method="_on_Popup_popup_hide"]

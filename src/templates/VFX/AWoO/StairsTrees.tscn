@@ -1,0 +1,150 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Templates/Objects/Trees/Tree3.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Templates/Objects/Trees/Tree1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Templates/Objects/Trees/TreeClump.tscn" type="PackedScene" id=3]
+
+
+[node name="YSort" type="YSort"]
+
+[node name="YSort2" type="YSort" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1831.52, 52.0551 )
+rotation = 3.14159
+scale = Vector2( 0.628633, -0.628633 )
+
+[node name="YSort7" type="YSort" parent="."]
+position = Vector2( 1927.69, 872.299 )
+rotation = 3.14159
+scale = Vector2( 0.628633, -0.628633 )
+
+[node name="Tree" type="StaticBody2D" parent="YSort7" instance=ExtResource( 1 )]
+position = Vector2( 37.5232, 1273.27 )
+scale = Vector2( 2.09041, 2.67436 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree8" type="StaticBody2D" parent="YSort7" instance=ExtResource( 1 )]
+position = Vector2( -108.607, 2536.79 )
+scale = Vector2( 3.93763, 5.0376 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree2" type="StaticBody2D" parent="YSort7" instance=ExtResource( 1 )]
+position = Vector2( -318.477, 1125.27 )
+scale = Vector2( 2.09041, 2.67436 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree3" type="StaticBody2D" parent="YSort7" instance=ExtResource( 1 )]
+position = Vector2( 9.52344, 789.266 )
+scale = Vector2( 1.92341, 2.46071 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree4" type="StaticBody2D" parent="YSort7" instance=ExtResource( 1 )]
+position = Vector2( 309.523, 621.266 )
+scale = Vector2( 1.92341, 2.46071 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree5" type="StaticBody2D" parent="YSort7" instance=ExtResource( 1 )]
+position = Vector2( -3.84644, 13.4159 )
+scale = Vector2( 1.09129, 1.39613 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree6" type="StaticBody2D" parent="YSort7" instance=ExtResource( 1 )]
+position = Vector2( -249.256, 183.306 )
+scale = Vector2( 1.09129, 1.39613 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree7" type="StaticBody2D" parent="YSort7" instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -313.437, 334.326 )
+scale = Vector2( 1.09129, 1.39613 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree9" type="StaticBody2D" parent="YSort7" instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -615.477, 828.916 )
+scale = Vector2( 1.33274, 1.70504 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree13" type="StaticBody2D" parent="YSort7" instance=ExtResource( 2 )]
+position = Vector2( 469.251, 3209.17 )
+scale = Vector2( 4.29466, 5.49435 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree14" type="StaticBody2D" parent="YSort7" instance=ExtResource( 2 )]
+position = Vector2( 47.8572, 2559.23 )
+scale = Vector2( 4.0868, 5.22843 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree15" type="StaticBody2D" parent="YSort7" instance=ExtResource( 2 )]
+position = Vector2( 626.38, 1923.57 )
+scale = Vector2( 2.73011, 3.49276 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree16" type="StaticBody2D" parent="YSort7" instance=ExtResource( 2 )]
+position = Vector2( 197.846, 1330.76 )
+scale = Vector2( 3.55751, 4.55128 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="YSort3" type="YSort" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 2147.91, 1742.97 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+
+[node name="YSort6" type="YSort" parent="." instance=ExtResource( 3 )]
+position = Vector2( -253.309, 376.237 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+
+[node name="Tree17" type="StaticBody2D" parent="YSort6" instance=ExtResource( 2 )]
+position = Vector2( -423.663, 2989.32 )
+scale = Vector2( 2.69976, 3.45393 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree18" type="StaticBody2D" parent="YSort6" instance=ExtResource( 2 )]
+position = Vector2( -688.565, 2580.74 )
+scale = Vector2( 2.5691, 3.28676 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree19" type="StaticBody2D" parent="YSort6" instance=ExtResource( 2 )]
+position = Vector2( -324.887, 2181.14 )
+scale = Vector2( 1.71624, 2.19566 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree20" type="StaticBody2D" parent="YSort6" instance=ExtResource( 2 )]
+position = Vector2( -594.278, 1808.49 )
+scale = Vector2( 2.23636, 2.86108 )
+__meta__ = {
+"_edit_group_": true
+}

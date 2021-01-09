@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/textures/UI/fonts/ubuntu/Ubuntu-Bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[sub_resource type="DynamicFont" id=2]
+size = 98
+font_data = ExtResource( 1 )
+
+[node name="Control" type="Control"]
+margin_left = -1920.0
+margin_bottom = 1080.0
+
+[node name="Label" type="Label" parent="."]
+material = SubResource( 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -131.0
+margin_top = -55.5
+margin_right = 131.0
+margin_bottom = 55.5
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Night"
+__meta__ = {
+"_edit_use_anchors_": false
+}

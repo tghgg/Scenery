@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "shake"
+length = 20.0
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath("../BG/Map/Base/Characters/Helen")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 6, 14 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 2.0, 15.0, 15.0 ],
+"method": "shake_camera"
+}, {
+"args": [ 2.0, 7.0, 7.0 ],
+"method": "shake_camera"
+} ]
+}
+
+[node name="ShakeLoop" type="AnimationPlayer"]
+autoplay = "shake"
+anims/shake = SubResource( 1 )

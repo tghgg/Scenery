@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Templates/VFX/World/FogTexture.tres" type="Texture" id=1]
+[ext_resource path="res://src/Templates/Misc/Shaders/diagonal_movement.shader" type="Shader" id=2]
+
+
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 2 )
+shader_param/scale_movement = 0.02
+
+[node name="Fog" type="Sprite"]
+self_modulate = Color( 1, 1, 1, 0.25098 )
+material = SubResource( 6 )
+position = Vector2( 956.589, 2936.52 )
+rotation = 1.57079
+scale = Vector2( 5.40442, 2.77896 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 1 )

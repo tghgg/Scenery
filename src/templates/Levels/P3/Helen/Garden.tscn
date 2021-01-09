@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Templates/BaseScene/ExitNode.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Templates/VFX/Particles/Leaves.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Templates/VFX/Camera/CanvasTint.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Scripts/Scenes/NewScene.gd" type="Script" id=4]
+[ext_resource path="res://src/Templates/VFX/Light/SkyLight.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/textures/levels/town/Plane 3/plane 3B2 school garden .png" type="Texture" id=6]
+[ext_resource path="res://src/Templates/BaseScene/Transitioner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Templates/Objects/Trees/Tree1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Templates/BaseScene/CGHandler.tscn" type="PackedScene" id=9]
+
+
+
+
+
+
+
+
+
+
+
+
+[node name="Garden" type="Node2D" groups=[
+"level_root",
+]]
+script = ExtResource( 4 )
+
+[node name="BG" type="Node2D" parent="."]
+
+[node name="Map" type="Sprite" parent="BG"]
+scale = Vector2( 1.48423, 1.48423 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Bounds" type="StaticBody2D" parent="BG/Map"]
+scale = Vector2( 2.09443, 2.06583 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="BG/Map/Bounds"]
+polygon = PoolVector2Array( -5.81512, -51.3607, 1913.72, -48.8092, 1911.87, -1.99286, -2.21008, 0 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="BG/Map/Bounds"]
+position = Vector2( 0, 619.182 )
+polygon = PoolVector2Array( -5.81512, -51.3607, 1913.72, -48.8092, 1911.87, -1.99286, -2.21008, 0 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="BG/Map/Bounds"]
+position = Vector2( -0.025238, 1644.5 )
+rotation = -1.57079
+polygon = PoolVector2Array( 1049.23, -51.3607, 1645.69, -48.8092, 1644.6, -1.99286, 1029.85, 0 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="BG/Map/Bounds"]
+position = Vector2( 754.363, 1641.01 )
+rotation = -1.57079
+polygon = PoolVector2Array( 1045.19, -50.3701, 1645.69, -48.8092, 1644.6, -1.99286, 1116.9, 0 )
+
+[node name="ExitNode" parent="BG/Map" instance=ExtResource( 1 )]
+position = Vector2( 762.77, 1100.69 )
+exit_scene = "res://src/Scenes/Intro/Plane3/Day1/School.tscn"
+
+[node name="Characters" type="YSort" parent="."]
+
+[node name="YSort" type="YSort" parent="Characters"]
+
+[node name="Tree" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 349.501, 1152.98 )
+
+[node name="Tree2" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 574.861, 1835.79 )
+
+[node name="Tree3" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 847.311, 1314.44 )
+
+[node name="Tree4" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 314.807, 1003.2 )
+
+[node name="Tree5" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 304.717, 824.93 )
+
+[node name="Tree6" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 143.265, 949.383 )
+
+[node name="Tree7" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 136.537, 1147.83 )
+
+[node name="Tree8" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 99.538, 777.84 )
+
+[node name="Tree9" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 227.354, 636.569 )
+
+[node name="Tree10" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 180.264, 1322.74 )
+
+[node name="Tree11" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 318.171, 1474.1 )
+
+[node name="Tree12" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 143.265, 1601.92 )
+
+[node name="Tree13" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 2129.62, 1366.36 )
+scale = Vector2( 1.56559, 2.00293 )
+
+[node name="Tree14" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 1977.05, 1184.13 )
+scale = Vector2( 1.56559, 2.00293 )
+
+[node name="Tree15" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 2150.81, 1107.85 )
+scale = Vector2( 1.56559, 2.00293 )
+
+[node name="Tree16" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 2032.15, 883.245 )
+scale = Vector2( 1.56559, 2.00293 )
+
+[node name="Tree17" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 1434.1, 1546.83 )
+scale = Vector2( 0.806416, 1.03169 )
+
+[node name="Tree18" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 1962.7, 1445.38 )
+scale = Vector2( 0.806416, 1.03169 )
+
+[node name="Tree19" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 1838.88, 2096.22 )
+scale = Vector2( 1.55638, 1.99114 )
+
+[node name="Tree20" parent="Characters/YSort" instance=ExtResource( 8 )]
+position = Vector2( 1838.88, 2096.22 )
+scale = Vector2( 1.55638, 1.99114 )
+
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="Skylight" parent="Effects" instance=ExtResource( 5 )]
+position = Vector2( 1207.64, -185.874 )
+color = Color( 0.941176, 0.937255, 0.67451, 0.196078 )
+
+[node name="CanvasModulate" parent="Effects" instance=ExtResource( 3 )]
+color = Color( 0.439216, 0.482353, 0.631373, 1 )
+
+[node name="FallingLeaves" parent="Effects" instance=ExtResource( 2 )]
+position = Vector2( -699.244, 283.936 )
+
+[node name="CGHandler" parent="." instance=ExtResource( 9 )]
+
+[node name="Transition" parent="." instance=ExtResource( 7 )]

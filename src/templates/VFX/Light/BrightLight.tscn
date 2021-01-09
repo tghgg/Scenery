@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/textures/vfx/world/whitefog.png" type="Texture" id=1]
+
+
+
+[node name="BrightLight" type="Light2D"]
+position = Vector2( 218.695, 69.3271 )
+texture = ExtResource( 1 )
+energy = 0.6

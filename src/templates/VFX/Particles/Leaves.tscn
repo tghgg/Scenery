@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/textures/vfx/particles/leaves2.png" type="Texture" id=2]
+[ext_resource path="res://src/Templates/VFX/Particles/SmoothFadeParticles.tres" type="Texture" id=3]
+
+
+[sub_resource type="Curve" id=1]
+min_value = -50.0
+max_value = 50.0
+_data = [ Vector2( 0.0045045, 50 ), 0.0, 0.0, 0, 0, Vector2( 0.195767, 22.2984 ), 0.0, 0.0, 0, 0, Vector2( 0.338624, -18.6107 ), 0.0, 0.0, 0, 0, Vector2( 0.509259, -50 ), 0.0, 0.0, 0, 0, Vector2( 0.666667, -15.4545 ), 0.0, 0.0, 0, 0, Vector2( 0.857143, -50 ), 0.0, 0.0, 0, 0, Vector2( 1, 50 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 2.04339, 0, 0, Vector2( 0.994186, 0 ), -5.51616, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+min_value = -1.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.518018, -1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.986364 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 1500, 1500, 1 )
+flag_disable_z = true
+spread = 100.0
+gravity = Vector3( 10, 3, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
+angular_velocity = 50.0
+angular_velocity_random = 0.48
+angular_velocity_curve = SubResource( 2 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = -1.0
+tangential_accel_random = 1.0
+tangential_accel_curve = SubResource( 6 )
+damping = 1.0
+damping_random = 1.0
+scale = 4.0
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+color_ramp = ExtResource( 3 )
+
+[node name="FallingLeaves" type="Node2D"]
+z_index = 10
+z_as_relative = false
+
+[node name="Leaves" type="Particles2D" parent="."]
+position = Vector2( 1026.73, 367.683 )
+amount = 150
+lifetime = 30.0
+preprocess = 25.0
+visibility_rect = Rect2( -1000, -500, 5000, 4000 )
+process_material = SubResource( 7 )
+texture = ExtResource( 2 )

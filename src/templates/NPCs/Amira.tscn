@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/characters/amira/a.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/vfx/light/player_light.png" type="Texture" id=3]
+[ext_resource path="res://assets/characters/amira/normal.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 20.618, 24.1875 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 3.64876
+height = 6.56464
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Amira" type="StaticBody2D"]
+position = Vector2( 998.834, 541.329 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 6.59229, 27.5132 )
+scale = Vector2( 0.123506, 0.0695105 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -74.6078 )
+scale = Vector2( 0.7, 0.7 )
+frames = SubResource( 2 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 5.42465, 51.8421 )
+shape = SubResource( 3 )
+
+[node name="InteractableArea" type="Area2D" parent="."]
+visible = false
+scale = Vector2( 2.73996, 2.46791 )
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+position = Vector2( 1.9088, 23.728 )
+scale = Vector2( 2.41862, -1.36485 )
+shape = SubResource( 4 )
+
+[node name="Face" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 5 )
+
+[node name="MovementHandler" type="AnimationPlayer" parent="."]

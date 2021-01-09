@@ -1,0 +1,679 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/textures/UI/fonts/ubuntu/Ubuntu-Light.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/scripts/UI/SettingsMenu.gd" type="Script" id=2]
+[ext_resource path="res://src/scripts/UI/VolumeSlider.gd" type="Script" id=3]
+[ext_resource path="res://addons/MSG_System/fonts/open_sans/OpenSans-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/textures/UI/fonts/ubuntu/Ubuntu-Bold.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.87451, 0.87451, 0.87451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.376471, 0.376471, 0.376471, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 96
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="ButtonGroup" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 1 )
+shadow_color = Color( 0.172549, 0.172549, 0.172549, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=9]
+size = 48
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+region_rect = Rect2( 68.8101, 85.851, 66.2509, 18.5502 )
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.956863, 0.956863, 0.956863, 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 128
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 10 )
+
+[sub_resource type="ButtonGroup" id=15]
+
+[sub_resource type="DynamicFont" id=16]
+size = 128
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="Animation" id=18]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -50.0, 0.0 ]
+}
+
+[node name="SettingsMenu" type="Control"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sidebar" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -791.0
+margin_top = -512.0
+margin_right = -263.0
+margin_bottom = 512.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sidebar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -264.0
+margin_top = -512.0
+margin_right = 264.0
+margin_bottom = 512.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Karma" type="Button" parent="Sidebar/VBoxContainer"]
+margin_top = 508.0
+margin_right = 528.0
+margin_bottom = 510.0
+focus_neighbour_bottom = NodePath("../Settings")
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+group = SubResource( 6 )
+text = "KARMA"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="Sidebar/VBoxContainer"]
+margin_top = 510.0
+margin_right = 528.0
+margin_bottom = 512.0
+focus_neighbour_top = NodePath("../Karma")
+focus_neighbour_bottom = NodePath("../Quit")
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+group = SubResource( 6 )
+text = "SETTINGS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Sidebar/VBoxContainer"]
+margin_top = 512.0
+margin_right = 528.0
+margin_bottom = 514.0
+focus_neighbour_top = NodePath("../Settings")
+focus_neighbour_bottom = NodePath("../Close")
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+group = SubResource( 6 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="Button" parent="Sidebar/VBoxContainer"]
+margin_top = 514.0
+margin_right = 528.0
+margin_bottom = 516.0
+focus_neighbour_top = NodePath("../Quit")
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+group = SubResource( 6 )
+text = "CLOSE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -264.0
+margin_top = -512.0
+margin_right = 792.0
+margin_bottom = 512.0
+custom_styles/panel = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -491.0
+margin_top = -490.5
+margin_right = 491.0
+margin_bottom = 490.5
+custom_styles/panel = SubResource( 8 )
+tab_align = 0
+tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Tabs" parent="Panel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+scrolling_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Settings"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -409.0
+margin_top = 82.5
+margin_right = 409.0
+margin_bottom = 229.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="Panel/TabContainer/Settings/VBoxContainer"]
+margin_right = 818.0
+margin_bottom = 24.0
+focus_mode = 0
+text = "Fullscreen"
+align = 1
+script = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/Settings/VBoxContainer"]
+margin_top = 28.0
+margin_right = 818.0
+margin_bottom = 44.0
+custom_constants/separation = 50
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Settings/VBoxContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 49.0
+margin_bottom = 15.0
+text = "Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VolumeSlider" type="HSlider" parent="Panel/TabContainer/Settings/VBoxContainer/HBoxContainer"]
+margin_left = 99.0
+margin_right = 818.0
+margin_bottom = 16.0
+focus_mode = 0
+size_flags_horizontal = 15
+size_flags_vertical = 3
+custom_styles/slider = SubResource( 10 )
+min_value = -20.0
+max_value = 10.0
+step = 2.0
+value = -20.0
+tick_count = 10
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Panel/TabContainer/Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -409.0
+margin_top = -252.0
+margin_right = 409.0
+margin_bottom = 450.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/Settings/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -242.5
+margin_right = 242.5
+margin_bottom = 55.0
+text = "GAME INSTRUCTIONS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Panel/TabContainer/Settings/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -364.5
+margin_top = -240.0
+margin_right = 364.5
+margin_bottom = -185.0
+text = "Use WASD or arrow keys to move"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Panel/TabContainer/Settings/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -329.0
+margin_top = -143.0
+margin_right = 329.0
+margin_bottom = -88.0
+text = "Press E to interact with objects"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Karma" type="Tabs" parent="Panel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+scrolling_enabled = false
+
+[node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/Karma"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -491.0
+margin_top = -490.5
+margin_right = 491.0
+margin_bottom = 490.5
+custom_styles/panel = SubResource( 11 )
+tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Karma/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 15
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer"]
+margin_top = 338.0
+margin_right = 982.0
+margin_bottom = 483.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_constants/hseparation = -200
+group = SubResource( 15 )
+text = "Evan"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Karma" type="Label" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer/Button"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -72.5
+margin_bottom = 72.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 1, 0.262745, 0.207843, 1 )
+text = "57"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer"]
+margin_top = 498.0
+margin_right = 982.0
+margin_bottom = 643.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_constants/hseparation = -200
+group = SubResource( 15 )
+text = "Helen"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Karma" type="Label" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer/Button2"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -72.5
+margin_bottom = 72.5
+rect_scale = Vector2( 1, 1.0084 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 0, 1, 0.368627, 1 )
+text = "93"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/TabContainer/Karma/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 15
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button4" type="Button" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer2"]
+margin_top = 418.0
+margin_right = 982.0
+margin_bottom = 563.0
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_constants/hseparation = -200
+group = SubResource( 15 )
+text = "Victor"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Karma" type="Label" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer2/Button4"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -263.0
+margin_top = -72.5
+margin_right = 13.0
+margin_bottom = 72.5
+rect_scale = Vector2( 1, 1.0084 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 0, 1, 0.368627, 1 )
+text = "99"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer2"]
+margin_top = 418.0
+margin_right = 982.0
+margin_bottom = 563.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_constants/hseparation = -200
+group = SubResource( 15 )
+text = "Amira"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Karma" type="Label" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer2/Button3"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -263.0
+margin_top = -72.5
+margin_right = 13.0
+margin_bottom = 72.5
+rect_scale = Vector2( 1, 1.0084 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 0, 1, 0.368627, 1 )
+text = "100"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/TabContainer/Karma/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 15
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer3"]
+margin_top = 418.0
+margin_right = 982.0
+margin_bottom = 563.0
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_constants/hseparation = -200
+group = SubResource( 15 )
+text = "Walter"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Karma" type="Label" parent="Panel/TabContainer/Karma/TabContainer/VBoxContainer3/Button3"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -263.0
+margin_top = -72.5
+margin_right = 13.0
+margin_bottom = 72.5
+rect_scale = Vector2( 1, 1.0084 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 0.988235, 0.0235294, 0.0235294, 1 )
+text = "10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="Button" parent="Panel/TabContainer/Karma"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -41.0
+margin_top = -63.5
+margin_right = 43.0
+margin_bottom = 20.5
+rect_rotation = -0.932327
+focus_mode = 0
+custom_styles/hover = SubResource( 17 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 17 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Previous" type="Button" parent="Panel/TabContainer/Karma"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -24.0
+margin_top = -61.5
+margin_right = 60.0
+margin_bottom = 22.5
+rect_rotation = 4.09757
+rect_scale = Vector2( -1, 1 )
+focus_mode = 0
+custom_styles/hover = SubResource( 17 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 17 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade = SubResource( 18 )
+[connection signal="pressed" from="Sidebar/VBoxContainer/Karma" to="." method="_on_Karma_pressed"]
+[connection signal="pressed" from="Sidebar/VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Sidebar/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Sidebar/VBoxContainer/Close" to="." method="_on_Close_pressed"]
+[connection signal="toggled" from="Panel/TabContainer/Settings/VBoxContainer/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="value_changed" from="Panel/TabContainer/Settings/VBoxContainer/HBoxContainer/VolumeSlider" to="Panel/TabContainer/Settings/VBoxContainer/HBoxContainer/VolumeSlider" method="_on_VolumeSlider_value_changed"]
+[connection signal="tab_changed" from="Panel/TabContainer/Karma/TabContainer" to="." method="_on_TabContainer_tab_changed"]
+[connection signal="pressed" from="Panel/TabContainer/Karma/Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/Karma/Previous" to="." method="_on_Previous_pressed"]

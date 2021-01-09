@@ -1,0 +1,1145 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://assets/textures/levels/title_screen.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/UI/panels/button-norm.svg" type="Texture" id=2]
+[ext_resource path="res://assets/textures/vfx/particles/particle.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/objects/town/trees/tree.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/vfx/particles/orb.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/vfx/light/player_light.png" type="Texture" id=6]
+[ext_resource path="res://src/Templates/VFX/AWoO/WalterDescentBackdrop.tscn" type="PackedScene" id=7]
+
+
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+# Auto-hide
+func _ready() -> void:
+	for child in get_children():
+		if child as Sprite:
+			child.set_visible(false)
+
+# Input handler
+func _physics_process(delta: float) -> void:
+	# Shake the camera
+	if global.start_camera_shake:
+		$Camera2D.set_offset(Vector2(
+			rand_range(-1.0, 1.0) * 7,
+			rand_range(-1.0, 1.0) * 50
+		))
+	else:
+		$Camera2D.set_offset(Vector2(0, 0))
+
+# Fade out the CG and smoothly transitions back to the player camera position
+func fade_out(cg := \"BG\", time := 1.0) -> void:
+
+
+	get_node(\"FadeOut\").interpolate_property(get_node(cg), \"modulate:a\", 1.0, 0.0, time, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	get_node(\"FadeOut\").start()
+
+	yield(get_tree().create_timer(time), \"timeout\")
+
+#	$CinematicBars/AnimationPlayer.play_backwards(\"slide\")
+#	yield($CinematicBars/AnimationPlayer, \"animation_finished\")
+#	$CinematicBars.visible = false
+	
+	global.get_player().get_node(\"Camera2D\").make_current()
+
+	get_node(\"FadeOut\").interpolate_property(get_node(\"Black\"), \"modulate:a\", 1.0, 0.0, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	get_node(\"FadeOut\").start()
+
+	# Re-enable the face sprites and disable the name label
+	MSG_Box.get_node(\"main/Face\").visible = true
+	MSG_Box.get_node(\"main/NinePatchRect4\").visible = false
+
+# Smoothly fade in the CG
+func fade_in(cg := \"BG\", time := 1.0, cinematic := false) -> void:
+	
+
+	
+
+
+	# Black transition
+	get_node(\"Black\").set_visible(true)
+	get_node(\"FadeIn\").interpolate_property(get_node(\"Black\"), \"modulate:a\", 0.0, 1.0, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$FadeIn.start()
+
+	yield($FadeIn, \"tween_completed\")
+	$Camera2D.make_current()
+	yield(get_tree(), \"idle_frame\")
+	
+	# Disable the face sprites and enable the name label
+	MSG_Box.get_node(\"main/Face\").visible = false
+	MSG_Box.get_node(\"main/NinePatchRect4\").visible = true
+	
+	# Use cinematic bars
+#	$CinematicBars.visible = cinematic
+#	$CinematicBars/AnimationPlayer.play(\"slide\")
+
+	# Fade in the actual CG
+	get_node(\"FadeIn\").interpolate_property(get_node(cg), \"modulate:a\", 0.0, 1.0, time, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	get_node(\"FadeIn\").start()
+	get_node(cg).set_visible(true)
+
+
+"
+
+[sub_resource type="CanvasItemMaterial" id=2]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 0.859375, 0.973633, 1, 1, 0.367188, 0.733032, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="CanvasItemMaterial" id=6]
+light_mode = 1
+
+[sub_resource type="Animation" id=7]
+length = 5.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.9 ),
+"transitions": PoolRealArray( 3.03143, 1 ),
+"update": 0,
+"values": [ Vector2( -1920, 0 ), Vector2( -1920, 25790.7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WalterFall:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5.5 ),
+"transitions": PoolRealArray( 5.65685, 1 ),
+"update": 0,
+"values": [ Vector2( 945.379, 2.47601 ), Vector2( 945.379, 3932.24 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Orbs:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.870588 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("WalterFall:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("WalterFall:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4.6 ),
+"transitions": PoolRealArray( 0.435275, 0.277392 ),
+"update": 0,
+"values": [ -135.0, 135.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Orbs2:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.203922 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.431373, 0.564706, 0.709804, 0 ), Color( 0.431373, 0.564706, 0.709804, 0.607843 ) ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=8]
+light_mode = 1
+
+[sub_resource type="Animation" id=9]
+resource_name = "flash"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.28, 0.38, 4 ),
+"transitions": PoolRealArray( 1, 10.556, 1, 2.63901, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0.996078, 0.00392157, 0.00392157, 0.988235 ), Color( 1, 1, 1, 0 ), Color( 0.996078, 0.00392157, 0.00392157, 0.968627 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "flash"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.28, 0.38, 4 ),
+"transitions": PoolRealArray( 1, 10.556, 1, 2.63901, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0.996078, 0.00392157, 0.00392157, 0.988235 ), Color( 1, 1, 1, 0 ), Color( 0.996078, 0.00392157, 0.00392157, 0.968627 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath("YSort:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera2D/Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=12]
+light_mode = 1
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0, 0.147651, 0.845638, 1 )
+colors = PoolColorArray( 0.317647, 0.317647, 0.317647, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=14]
+gradient = SubResource( 13 )
+
+[sub_resource type="Curve" id=15]
+_data = [ Vector2( 0, 0 ), 0.0, 2.04339, 0, 0, Vector2( 0.994186, 0 ), -5.51616, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 15000, 1 )
+flag_disable_z = true
+spread = 100.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
+angular_velocity = 20.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 40.0
+angle_random = 1.0
+scale = 3.0
+scale_random = 1.0
+scale_curve = SubResource( 16 )
+color_ramp = SubResource( 14 )
+
+[sub_resource type="CanvasItemMaterial" id=18]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=19]
+light_mode = 1
+
+[sub_resource type="ArrayMesh" id=20]
+surfaces/0 = {
+"aabb": AABB( -216.5, -343.5, 0, 433, 687, 0 ),
+"array_data": PoolByteArray( 0, 0, 40, 65, 205, 76, 168, 195, 54, 53, 6, 63, 51, 142, 36, 60, 0, 0, 40, 65, 51, 179, 167, 195, 54, 53, 6, 63, 127, 44, 65, 60, 152, 153, 217, 65, 0, 64, 160, 195, 208, 20, 16, 63, 42, 33, 9, 61, 152, 153, 225, 65, 0, 64, 160, 195, 42, 172, 16, 63, 42, 33, 9, 61, 208, 204, 36, 66, 0, 64, 162, 195, 195, 91, 24, 63, 214, 143, 226, 60, 208, 204, 122, 66, 0, 64, 162, 195, 219, 17, 37, 63, 214, 143, 226, 60, 0, 0, 149, 66, 205, 12, 161, 195, 211, 11, 44, 63, 34, 46, 255, 60, 0, 0, 149, 66, 154, 25, 160, 195, 211, 11, 44, 63, 15, 235, 10, 61, 204, 204, 158, 66, 0, 64, 157, 195, 116, 241, 46, 63, 9, 231, 44, 61, 0, 0, 162, 66, 0, 64, 157, 195, 159, 227, 47, 63, 9, 231, 44, 61, 0, 0, 191, 66, 154, 89, 153, 195, 63, 118, 56, 63, 67, 104, 91, 61, 0, 0, 191, 66, 51, 179, 152, 195, 63, 118, 56, 63, 119, 40, 99, 61, 0, 0, 217, 66, 51, 179, 146, 195, 215, 37, 64, 63, 26, 90, 149, 61, 0, 0, 217, 66, 154, 153, 145, 195, 215, 37, 64, 63, 12, 233, 155, 61, 0, 0, 233, 66, 154, 153, 140, 195, 170, 224, 68, 63, 154, 184, 185, 61, 0, 0, 233, 66, 0, 192, 134, 195, 170, 224, 68, 63, 135, 153, 220, 61, 52, 51, 234, 66, 0, 192, 134, 195, 122, 59, 69, 63, 135, 153, 220, 61, 52, 51, 250, 66, 0, 64, 132, 195, 78, 246, 73, 63, 78, 129, 235, 61, 152, 153, 255, 66, 0, 64, 132, 195, 245, 142, 75, 63, 78, 129, 235, 61, 0, 128, 19, 67, 0, 128, 129, 195, 158, 52, 87, 63, 169, 230, 251, 61, 0, 128, 19, 67, 154, 217, 128, 195, 158, 52, 87, 63, 196, 198, 255, 61, 0, 128, 32, 67, 51, 179, 122, 195, 54, 228, 94, 63, 110, 82, 10, 62, 0, 128, 32, 67, 51, 51, 121, 195, 54, 228, 94, 63, 203, 142, 12, 62, 0, 128, 46, 67, 205, 76, 105, 195, 41, 43, 103, 63, 225, 65, 36, 62, 0, 128, 46, 67, 102, 230, 102, 195, 41, 43, 103, 63, 171, 213, 39, 62, 102, 230, 59, 67, 0, 128, 69, 195, 75, 23, 111, 63, 95, 158, 89, 62, 154, 25, 64, 67, 0, 128, 66, 195, 251, 146, 113, 63, 26, 23, 94, 62, 0, 128, 70, 67, 51, 179, 69, 195, 164, 91, 117, 63, 14, 82, 89, 62, 0, 128, 70, 67, 154, 25, 66, 195, 164, 91, 117, 63, 187, 175, 94, 62, 0, 128, 83, 67, 154, 25, 48, 195, 60, 11, 125, 63, 34, 132, 121, 62, 0, 128, 83, 67, 0, 128, 44, 195, 60, 11, 125, 63, 209, 225, 126, 62, 204, 76, 84, 67, 0, 128, 36, 195, 80, 132, 125, 63, 56, 103, 133, 62, 0, 128, 88, 67, 0, 0, 29, 195, 0, 0, 128, 63, 35, 254, 138, 62, 0, 128, 88, 67, 154, 25, 0, 195, 0, 0, 128, 63, 240, 135, 160, 62, 52, 179, 81, 67, 0, 0, 229, 194, 205, 250, 123, 63, 171, 170, 170, 62, 0, 128, 80, 67, 0, 0, 229, 194, 44, 69, 123, 63, 171, 170, 170, 62, 0, 128, 58, 67, 152, 153, 171, 194, 102, 67, 110, 63, 80, 14, 192, 62, 154, 25, 57, 67, 0, 0, 157, 194, 129, 111, 109, 63, 18, 127, 197, 62, 102, 102, 55, 67, 0, 0, 157, 194, 52, 110, 108, 63, 18, 127, 197, 62, 204, 76, 39, 67, 0, 0, 126, 194, 106, 233, 98, 63, 231, 172, 208, 62, 154, 25, 37, 67, 0, 0, 126, 194, 112, 156, 97, 63, 231, 172, 208, 62, 0, 0, 235, 66, 48, 51, 21, 194, 5, 120, 69, 63, 147, 51, 228, 62, 52, 51, 177, 66, 0, 0, 208, 64, 232, 97, 52, 63, 16, 108, 2, 63, 204, 204, 174, 66, 0, 0, 208, 64, 72, 172, 51, 63, 16, 108, 2, 63, 0, 0, 164, 65, 104, 102, 160, 66, 190, 30, 12, 63, 163, 226, 29, 63, 0, 0, 164, 65, 52, 51, 197, 66, 190, 30, 12, 63, 229, 189, 36, 63, 0, 0, 140, 65, 52, 179, 0, 67, 175, 88, 10, 63, 69, 245, 47, 63, 0, 0, 140, 65, 0, 128, 18, 67, 175, 88, 10, 63, 74, 151, 54, 63, 0, 0, 132, 65, 0, 64, 137, 67, 85, 193, 9, 63, 200, 73, 102, 63, 48, 51, 139, 65, 0, 64, 137, 67, 140, 73, 10, 63, 200, 73, 102, 63, 152, 153, 173, 65, 0, 64, 166, 67, 94, 212, 12, 63, 169, 230, 123, 63, 48, 51, 155, 65, 0, 64, 166, 67, 65, 120, 11, 63, 169, 230, 123, 63, 48, 51, 19, 65, 0, 192, 171, 67, 115, 112, 5, 63, 0, 0, 128, 63, 160, 153, 25, 193, 0, 192, 171, 67, 4, 166, 244, 62, 0, 0, 128, 63, 0, 0, 132, 193, 154, 217, 169, 67, 87, 125, 236, 62, 129, 149, 126, 63, 0, 0, 132, 193, 154, 25, 169, 67, 87, 125, 236, 62, 105, 6, 126, 63, 0, 0, 180, 193, 154, 153, 165, 67, 25, 101, 229, 62, 166, 106, 123, 63, 0, 0, 180, 193, 0, 64, 161, 67, 25, 101, 229, 62, 183, 44, 120, 63, 104, 102, 170, 193, 0, 64, 161, 67, 89, 208, 230, 62, 183, 44, 120, 63, 0, 0, 104, 193, 204, 76, 118, 67, 193, 218, 238, 62, 168, 199, 91, 63, 0, 0, 104, 193, 104, 102, 91, 67, 193, 218, 238, 62, 140, 193, 81, 63, 0, 0, 24, 193, 102, 102, 0, 67, 73, 196, 244, 62, 166, 216, 47, 63, 0, 0, 24, 193, 0, 0, 98, 66, 73, 196, 244, 62, 202, 13, 21, 63, 96, 102, 126, 193, 0, 0, 30, 66, 247, 50, 237, 62, 21, 184, 14, 63, 208, 204, 132, 193, 0, 0, 30, 66, 17, 95, 236, 62, 21, 184, 14, 63, 208, 204, 180, 193, 0, 0, 236, 65, 212, 70, 229, 62, 35, 254, 10, 63, 152, 153, 193, 193, 0, 0, 236, 65, 128, 98, 227, 62, 35, 254, 10, 63, 0, 0, 159, 194, 208, 204, 140, 193, 209, 254, 161, 62, 29, 226, 242, 62, 0, 0, 159, 194, 160, 153, 157, 193, 209, 254, 161, 62, 117, 81, 241, 62, 0, 0, 183, 194, 160, 153, 253, 193, 86, 206, 147, 62, 253, 95, 232, 62, 0, 0, 183, 194, 0, 0, 8, 194, 86, 206, 147, 62, 45, 169, 230, 62, 51, 51, 197, 194, 0, 0, 58, 194, 31, 105, 139, 62, 80, 88, 221, 62, 154, 153, 199, 194, 0, 0, 58, 194, 223, 253, 137, 62, 80, 88, 221, 62, 102, 102, 219, 194, 0, 0, 22, 194, 39, 146, 124, 62, 106, 13, 228, 62, 0, 0, 224, 194, 0, 0, 22, 194, 179, 33, 119, 62, 106, 13, 228, 62, 0, 0, 252, 194, 0, 0, 244, 193, 234, 5, 86, 62, 240, 68, 233, 62, 51, 51, 2, 195, 0, 0, 244, 193, 46, 23, 76, 62, 240, 68, 233, 62, 51, 51, 19, 195, 0, 0, 204, 193, 38, 227, 35, 62, 226, 254, 236, 62, 51, 179, 35, 195, 0, 0, 204, 193, 167, 187, 249, 61, 226, 254, 236, 62, 0, 128, 42, 195, 48, 51, 215, 193, 8, 146, 217, 61, 199, 243, 235, 62, 0, 128, 42, 195, 160, 153, 225, 193, 8, 146, 217, 61, 192, 251, 234, 62, 0, 128, 73, 195, 208, 204, 40, 194, 206, 228, 13, 61, 180, 140, 224, 62, 0, 128, 73, 195, 208, 204, 46, 194, 206, 228, 13, 61, 133, 110, 223, 62, 0, 128, 82, 195, 208, 204, 82, 194, 176, 7, 99, 60, 108, 185, 216, 62, 0, 128, 82, 195, 208, 204, 92, 194, 176, 7, 99, 60, 115, 220, 214, 62, 0, 128, 88, 195, 204, 204, 138, 194, 0, 0, 0, 0, 64, 71, 204, 62, 0, 128, 88, 195, 0, 0, 193, 194, 0, 0, 0, 0, 222, 20, 184, 62, 0, 128, 80, 195, 0, 0, 193, 194, 117, 90, 151, 60, 222, 20, 184, 62, 0, 128, 80, 195, 154, 153, 182, 194, 117, 90, 151, 60, 248, 244, 187, 62, 0, 128, 78, 195, 154, 153, 186, 194, 18, 49, 189, 60, 100, 119, 186, 62, 0, 128, 78, 195, 0, 0, 188, 194, 18, 49, 189, 60, 215, 241, 185, 62, 0, 128, 87, 195, 0, 0, 224, 194, 117, 90, 23, 59, 164, 135, 172, 62, 0, 128, 87, 195, 0, 128, 5, 195, 117, 90, 23, 59, 173, 129, 156, 62, 51, 51, 86, 195, 0, 128, 5, 195, 109, 14, 174, 59, 173, 129, 156, 62, 51, 51, 85, 195, 0, 128, 12, 195, 167, 187, 249, 59, 39, 74, 151, 62, 154, 153, 83, 195, 0, 128, 12, 195, 105, 104, 57, 60, 39, 74, 151, 62, 0, 128, 77, 195, 0, 0, 23, 195, 97, 28, 208, 60, 223, 118, 143, 62, 0, 128, 77, 195, 154, 153, 36, 195, 97, 28, 208, 60, 36, 84, 133, 62, 205, 76, 74, 195, 0, 128, 61, 195, 123, 83, 6, 61, 254, 138, 101, 62, 205, 204, 72, 195, 0, 128, 61, 195, 246, 131, 20, 61, 254, 138, 101, 62, 205, 204, 66, 195, 0, 128, 75, 195, 226, 69, 77, 61, 231, 172, 80, 62, 102, 102, 65, 195, 0, 128, 75, 195, 51, 132, 90, 61, 231, 172, 80, 62, 0, 128, 56, 195, 51, 51, 85, 195, 117, 90, 151, 61, 153, 55, 66, 62, 0, 128, 59, 195, 154, 25, 92, 195, 250, 41, 137, 61, 182, 238, 55, 62, 0, 128, 59, 195, 51, 179, 113, 195, 250, 41, 137, 61, 161, 188, 23, 62, 0, 0, 59, 195, 0, 128, 116, 195, 100, 135, 139, 61, 54, 144, 19, 62, 102, 230, 65, 195, 51, 51, 124, 195, 95, 201, 85, 61, 16, 22, 8, 62, 205, 204, 64, 195, 0, 128, 126, 195, 49, 49, 96, 61, 110, 168, 4, 62, 51, 51, 64, 195, 0, 128, 126, 195, 46, 222, 101, 61, 110, 168, 4, 62, 154, 25, 63, 195, 0, 192, 129, 195, 0, 70, 112, 61, 21, 105, 250, 61, 102, 102, 61, 195, 0, 192, 129, 195, 104, 45, 128, 61, 21, 105, 250, 61, 102, 102, 53, 195, 0, 64, 134, 195, 5, 4, 166, 61, 174, 148, 223, 61, 0, 0, 51, 195, 0, 64, 134, 195, 1, 94, 177, 61, 174, 148, 223, 61, 0, 128, 45, 195, 205, 204, 135, 195, 141, 97, 203, 61, 230, 86, 214, 61, 0, 128, 51, 195, 154, 217, 138, 195, 151, 0, 175, 61, 167, 39, 196, 61, 0, 128, 51, 195, 0, 128, 141, 195, 151, 0, 175, 61, 236, 90, 180, 61, 51, 179, 48, 195, 0, 64, 144, 195, 232, 62, 188, 61, 145, 245, 163, 61, 51, 51, 47, 195, 0, 64, 144, 195, 37, 87, 195, 61, 145, 245, 163, 61, 51, 51, 39, 195, 0, 64, 147, 195, 195, 45, 233, 61, 162, 18, 146, 61, 205, 204, 35, 195, 0, 64, 147, 195, 147, 66, 249, 61, 162, 18, 146, 61, 0, 128, 20, 195, 0, 128, 149, 195, 28, 208, 32, 62, 110, 168, 132, 61, 0, 128, 12, 195, 51, 51, 153, 195, 107, 187, 51, 62, 39, 50, 93, 61, 0, 128, 12, 195, 0, 0, 156, 195, 107, 187, 51, 62, 208, 206, 59, 61, 51, 179, 9, 195, 0, 192, 158, 195, 148, 90, 58, 62, 25, 4, 27, 61, 51, 51, 8, 195, 0, 192, 158, 195, 179, 230, 61, 62, 25, 4, 27, 61, 51, 51, 1, 195, 0, 192, 161, 195, 151, 116, 78, 62, 118, 124, 238, 60, 102, 102, 251, 194, 0, 192, 161, 195, 138, 187, 86, 62, 118, 124, 238, 60, 154, 153, 223, 194, 0, 192, 163, 195, 200, 154, 119, 62, 248, 201, 190, 60, 0, 0, 181, 194, 0, 192, 163, 195, 11, 253, 148, 62, 248, 201, 190, 60, 204, 204, 133, 194, 0, 64, 169, 195, 236, 228, 176, 62, 118, 124, 238, 59, 52, 51, 123, 194, 0, 64, 169, 195, 5, 190, 181, 62, 118, 124, 238, 59, 104, 102, 6, 194, 0, 192, 171, 195, 14, 69, 216, 62, 0, 0, 0, 0, 128, 102, 166, 191, 0, 192, 171, 195, 123, 118, 254, 62, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 132, 0, 0, 0, 1, 0, 3, 0, 4, 0, 5, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 11, 0, 12, 0, 13, 0, 13, 0, 14, 0, 15, 0, 15, 0, 16, 0, 17, 0, 17, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 22, 0, 23, 0, 24, 0, 26, 0, 27, 0, 28, 0, 28, 0, 29, 0, 30, 0, 31, 0, 32, 0, 33, 0, 33, 0, 34, 0, 35, 0, 36, 0, 37, 0, 38, 0, 38, 0, 39, 0, 40, 0, 41, 0, 42, 0, 43, 0, 44, 0, 45, 0, 46, 0, 46, 0, 47, 0, 48, 0, 48, 0, 49, 0, 50, 0, 51, 0, 52, 0, 53, 0, 53, 0, 54, 0, 55, 0, 55, 0, 56, 0, 57, 0, 59, 0, 60, 0, 61, 0, 63, 0, 64, 0, 65, 0, 65, 0, 66, 0, 67, 0, 68, 0, 69, 0, 70, 0, 72, 0, 73, 0, 74, 0, 74, 0, 75, 0, 76, 0, 76, 0, 77, 0, 78, 0, 78, 0, 79, 0, 80, 0, 80, 0, 81, 0, 82, 0, 82, 0, 83, 0, 84, 0, 84, 0, 85, 0, 86, 0, 86, 0, 87, 0, 88, 0, 90, 0, 91, 0, 92, 0, 93, 0, 94, 0, 95, 0, 96, 0, 97, 0, 98, 0, 99, 0, 100, 0, 101, 0, 102, 0, 103, 0, 104, 0, 105, 0, 106, 0, 107, 0, 108, 0, 109, 0, 110, 0, 110, 0, 111, 0, 112, 0, 113, 0, 114, 0, 115, 0, 115, 0, 116, 0, 117, 0, 117, 0, 118, 0, 119, 0, 121, 0, 122, 0, 123, 0, 124, 0, 125, 0, 126, 0, 126, 0, 127, 0, 128, 0, 128, 0, 129, 0, 130, 0, 130, 0, 131, 0, 132, 0, 132, 0, 1, 0, 2, 0, 3, 0, 5, 0, 7, 0, 8, 0, 10, 0, 11, 0, 11, 0, 13, 0, 15, 0, 17, 0, 19, 0, 20, 0, 20, 0, 22, 0, 24, 0, 26, 0, 28, 0, 30, 0, 31, 0, 33, 0, 35, 0, 36, 0, 38, 0, 40, 0, 41, 0, 43, 0, 44, 0, 48, 0, 50, 0, 51, 0, 51, 0, 53, 0, 55, 0, 55, 0, 57, 0, 58, 0, 65, 0, 67, 0, 68, 0, 68, 0, 70, 0, 71, 0, 72, 0, 74, 0, 76, 0, 76, 0, 78, 0, 80, 0, 80, 0, 82, 0, 84, 0, 84, 0, 86, 0, 88, 0, 90, 0, 92, 0, 93, 0, 93, 0, 95, 0, 96, 0, 96, 0, 98, 0, 99, 0, 99, 0, 101, 0, 102, 0, 102, 0, 104, 0, 105, 0, 105, 0, 107, 0, 108, 0, 108, 0, 110, 0, 112, 0, 113, 0, 115, 0, 117, 0, 117, 0, 119, 0, 120, 0, 121, 0, 123, 0, 124, 0, 124, 0, 126, 0, 128, 0, 128, 0, 130, 0, 132, 0, 2, 0, 3, 0, 7, 0, 8, 0, 11, 0, 15, 0, 17, 0, 20, 0, 24, 0, 25, 0, 26, 0, 30, 0, 30, 0, 31, 0, 35, 0, 35, 0, 36, 0, 40, 0, 48, 0, 51, 0, 55, 0, 55, 0, 58, 0, 59, 0, 65, 0, 68, 0, 71, 0, 72, 0, 76, 0, 80, 0, 80, 0, 84, 0, 88, 0, 90, 0, 93, 0, 96, 0, 96, 0, 99, 0, 102, 0, 105, 0, 108, 0, 112, 0, 113, 0, 117, 0, 120, 0, 121, 0, 124, 0, 128, 0, 128, 0, 132, 0, 2, 0, 2, 0, 7, 0, 8, 0, 15, 0, 17, 0, 24, 0, 25, 0, 30, 0, 35, 0, 35, 0, 40, 0, 41, 0, 46, 0, 48, 0, 55, 0, 55, 0, 59, 0, 61, 0, 72, 0, 80, 0, 88, 0, 89, 0, 90, 0, 96, 0, 102, 0, 105, 0, 112, 0, 113, 0, 120, 0, 121, 0, 121, 0, 128, 0, 2, 0, 2, 0, 8, 0, 15, 0, 15, 0, 24, 0, 25, 0, 25, 0, 35, 0, 41, 0, 44, 0, 46, 0, 55, 0, 71, 0, 72, 0, 88, 0, 89, 0, 96, 0, 102, 0, 102, 0, 112, 0, 113, 0, 113, 0, 121, 0, 2, 0, 2, 0, 15, 0, 25, 0, 25, 0, 41, 0, 44, 0, 44, 0, 55, 0, 61, 0, 71, 0, 88, 0, 89, 0, 89, 0, 102, 0, 113, 0, 113, 0, 2, 0, 25, 0, 25, 0, 44, 0, 61, 0, 71, 0, 89, 0, 113, 0, 25, 0, 61, 0, 62, 0, 65, 0, 71, 0, 113, 0, 25, 0, 62, 0, 63, 0, 63, 0, 65, 0, 113, 0, 113, 0, 25, 0, 63, 0 ),
+"blend_shape_data": [  ],
+"format": 262417,
+"index_count": 393,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 133
+}
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 20.1736, 26.1514 )
+
+[sub_resource type="GDScript" id=22]
+script/source = "extends Area2D
+
+#class_name InteractableArea
+
+export (String, FILE) var interaction_script
+export (bool) var self_destruct = false
+export (bool) var blocking = false
+
+onready var root_node := self.get_parent().get_parent().get_parent()
+
+# Dialogue handler
+func talk() -> void:
+	# Talk if the character has dialogue
+	if (interaction_script):
+		global.set_can_talk(false)
+		MSG.start_dialogue(interaction_script, self)
+
+		global.get_player().letterbox(\"current\")
+
+		# Some space to add dynamic events here
+		yield(global, \"dialogue_finished\")
+
+		# Descent CG
+		get_tree().current_scene.get_node(\"CGHandler\").fade_in()
+
+		yield(get_tree().create_timer(2.0), \"timeout\")
+		
+		get_tree().current_scene.get_node(\"CGHandler/Camera2D/AnimationPlayer\").play(\"fall\")
+
+		yield(get_tree().create_timer(5.0), \"timeout\")
+
+		get_tree().current_scene.get_node(\"CGHandler/Camera2D/Flash/AnimationPlayer\").play(\"final_flash\")
+		global.shake_camera(true, 0.5)
+
+
+		yield(get_tree().current_scene.get_node(\"CGHandler/Camera2D/Flash/AnimationPlayer\"), \"animation_finished\")
+
+		get_tree().current_scene.get_node(\"CGHandler/AnimationPlayer\").play(\"fade\")
+
+		get_tree().current_scene.get_node(\"CGHandler\").fade_out(\"BG\", 3.8)
+		
+		yield(get_tree().create_timer(4.5), \"timeout\")
+		
+		GlobalMusicPlayer.stop_music()
+		
+		get_tree().current_scene.get_node(\"Characters/Helen\").talk()
+		get_tree().current_scene.get_node(\"CGHandler/Orbs\").emitting = false
+		
+		yield(global, \"dialogue_finished\")
+		
+		yield(get_tree().create_timer(0.6), \"timeout\")
+		
+		get_tree().current_scene.get_node(\"Characters/GenericNPC\").talk()
+		
+		yield(global, \"dialogue_finished\")
+		
+		global.get_player().hide_letterbox()
+
+		global.get_player().movement_frozen = false
+		
+		get_tree().current_scene.get_node(\"BG/Map/Block\").disable()
+		get_node(\"../Block2\").monitoring = true
+		get_node(\"../Block3\").monitoring = true
+		
+		get_tree().current_scene.get_node(\"CGHandler\").set_physics_process(false)
+		
+		if self_destruct:
+			yield(get_tree(), \"idle_frame\")
+			queue_free()
+		elif blocking:
+			$StaticBody2D/CollisionShape2D.disabled = false
+
+	else:
+		print('No dialogue available for the character')
+
+func disable() -> void:
+	monitoring = false
+	$StaticBody2D/CollisionShape2D.disabled = true
+
+func _on_InteractableArea_area_entered(area: Area2D) -> void:
+	if area.get_parent() is Player and interaction_script:
+		talk()
+#		area.get_parent().reset_pan_camera()
+		yield(get_tree().create_timer(1.5), \"timeout\")
+		area.get_parent().movement_frozen = true
+"
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 10.5911, 27.2802 )
+
+[node name="CGHandler" type="Node2D"]
+z_index = 4000
+z_as_relative = false
+script = SubResource( 1 )
+
+[node name="Black" type="Sprite" parent="."]
+visible = false
+self_modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1000, 1000 )
+z_index = 1000
+z_as_relative = false
+texture = ExtResource( 1 )
+
+[node name="BG" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 2 )
+position = Vector2( -1920, 0 )
+z_index = 4000
+z_as_relative = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="FadeOut" type="Tween" parent="."]
+
+[node name="FadeIn" type="Tween" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -1920, 0 )
+anchor_mode = 0
+
+[node name="Sprite" parent="Camera2D" instance=ExtResource( 7 )]
+self_modulate = Color( 0.431373, 0.564706, 0.709804, 0 )
+material = SubResource( 3 )
+texture = SubResource( 5 )
+
+[node name="WalterFall" type="Sprite" parent="Camera2D"]
+self_modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 6 )
+position = Vector2( 945.379, 2.47601 )
+rotation = -2.35619
+scale = Vector2( 4.44467, 4.44467 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+anims/fall = SubResource( 7 )
+
+[node name="Flash" type="Sprite" parent="Camera2D"]
+self_modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+material = SubResource( 8 )
+position = Vector2( 867.89, 582.39 )
+scale = Vector2( 18.9095, 14.3765 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/Flash"]
+anims/final_flash = SubResource( 9 )
+anims/flash = SubResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade = SubResource( 11 )
+
+[node name="Orbs" type="Particles2D" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 12 )
+position = Vector2( -1172.71, 10636.7 )
+amount = 200
+lifetime = 15.0
+preprocess = 20.0
+visibility_rect = Rect2( -500, -25000, 1500, 50000 )
+process_material = SubResource( 17 )
+texture = ExtResource( 5 )
+
+[node name="Orbs2" type="Particles2D" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 12 )
+position = Vector2( -1172.71, 10636.7 )
+amount = 100
+lifetime = 15.0
+preprocess = 20.0
+visibility_rect = Rect2( -500, -25000, 1500, 50000 )
+process_material = SubResource( 17 )
+texture = ExtResource( 5 )
+
+[node name="YSort" type="YSort" parent="."]
+position = Vector2( -1025.39, 646.539 )
+
+[node name="TreeClump" type="YSort" parent="YSort"]
+position = Vector2( -1539.01, 26659.3 )
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+
+[node name="Tree" type="StaticBody2D" parent="YSort/TreeClump"]
+material = SubResource( 18 )
+position = Vector2( 37.5232, 1273.27 )
+scale = Vector2( 2.09041, 2.67436 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump/Tree"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump/Tree"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump/Tree"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree2" type="StaticBody2D" parent="YSort/TreeClump"]
+material = SubResource( 18 )
+position = Vector2( -208.087, 1000.96 )
+scale = Vector2( 2.09041, 2.67436 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump/Tree2"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump/Tree2"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump/Tree2"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree3" type="StaticBody2D" parent="YSort/TreeClump"]
+material = SubResource( 18 )
+position = Vector2( -293.517, 1412.09 )
+scale = Vector2( 2.80941, 3.59422 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump/Tree3"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump/Tree3"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump/Tree3"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree4" type="StaticBody2D" parent="YSort/TreeClump"]
+material = SubResource( 18 )
+position = Vector2( 325.849, 1155.8 )
+scale = Vector2( 2.80941, 3.59422 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump/Tree4"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump/Tree4"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump/Tree4"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree5" type="StaticBody2D" parent="YSort/TreeClump"]
+material = SubResource( 18 )
+position = Vector2( -304.196, 1027.66 )
+scale = Vector2( 2.80941, 3.59422 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump/Tree5"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump/Tree5"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump/Tree5"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree6" type="StaticBody2D" parent="YSort/TreeClump"]
+material = SubResource( 18 )
+position = Vector2( -768.72, 1054.36 )
+scale = Vector2( 2.18937, 2.80096 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump/Tree6"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump/Tree6"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump/Tree6"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree7" type="StaticBody2D" parent="YSort/TreeClump"]
+material = SubResource( 18 )
+position = Vector2( -1110.44, 1033 )
+scale = Vector2( 2.90879, 3.72135 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump/Tree7"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump/Tree7"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump/Tree7"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree8" type="StaticBody2D" parent="YSort/TreeClump"]
+material = SubResource( 18 )
+position = Vector2( -1142.48, 1529.56 )
+scale = Vector2( 2.90879, 3.72135 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump/Tree8"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump/Tree8"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump/Tree8"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="TreeClump2" type="YSort" parent="YSort"]
+position = Vector2( -695.391, 27417.4 )
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+
+[node name="Tree" type="StaticBody2D" parent="YSort/TreeClump2"]
+material = SubResource( 18 )
+position = Vector2( 37.5232, 1273.27 )
+scale = Vector2( 2.09041, 2.67436 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump2/Tree"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump2/Tree"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump2/Tree"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree2" type="StaticBody2D" parent="YSort/TreeClump2"]
+material = SubResource( 18 )
+position = Vector2( -208.087, 1000.96 )
+scale = Vector2( 2.09041, 2.67436 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump2/Tree2"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump2/Tree2"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump2/Tree2"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree3" type="StaticBody2D" parent="YSort/TreeClump2"]
+material = SubResource( 18 )
+position = Vector2( -293.517, 1412.09 )
+scale = Vector2( 2.80941, 3.59422 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump2/Tree3"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump2/Tree3"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump2/Tree3"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree4" type="StaticBody2D" parent="YSort/TreeClump2"]
+material = SubResource( 18 )
+position = Vector2( 325.849, 1155.8 )
+scale = Vector2( 2.80941, 3.59422 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump2/Tree4"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump2/Tree4"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump2/Tree4"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree5" type="StaticBody2D" parent="YSort/TreeClump2"]
+material = SubResource( 18 )
+position = Vector2( -304.196, 1027.66 )
+scale = Vector2( 2.80941, 3.59422 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump2/Tree5"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump2/Tree5"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump2/Tree5"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree6" type="StaticBody2D" parent="YSort/TreeClump2"]
+material = SubResource( 18 )
+position = Vector2( -768.72, 1054.36 )
+scale = Vector2( 2.18937, 2.80096 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump2/Tree6"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump2/Tree6"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump2/Tree6"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree7" type="StaticBody2D" parent="YSort/TreeClump2"]
+material = SubResource( 18 )
+position = Vector2( -1110.44, 1033 )
+scale = Vector2( 2.90879, 3.72135 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump2/Tree7"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump2/Tree7"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump2/Tree7"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree8" type="StaticBody2D" parent="YSort/TreeClump2"]
+material = SubResource( 18 )
+position = Vector2( -1142.48, 1529.56 )
+scale = Vector2( 2.90879, 3.72135 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump2/Tree8"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump2/Tree8"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump2/Tree8"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="TreeClump3" type="YSort" parent="YSort"]
+position = Vector2( -33.3108, 26424.3 )
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+
+[node name="Tree" type="StaticBody2D" parent="YSort/TreeClump3"]
+material = SubResource( 18 )
+position = Vector2( 37.5232, 1273.27 )
+scale = Vector2( 2.09041, 2.67436 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump3/Tree"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump3/Tree"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump3/Tree"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree2" type="StaticBody2D" parent="YSort/TreeClump3"]
+material = SubResource( 18 )
+position = Vector2( -208.087, 1000.96 )
+scale = Vector2( 2.09041, 2.67436 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump3/Tree2"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump3/Tree2"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump3/Tree2"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree3" type="StaticBody2D" parent="YSort/TreeClump3"]
+material = SubResource( 18 )
+position = Vector2( -293.517, 1412.09 )
+scale = Vector2( 2.80941, 3.59422 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump3/Tree3"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump3/Tree3"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump3/Tree3"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree4" type="StaticBody2D" parent="YSort/TreeClump3"]
+material = SubResource( 18 )
+position = Vector2( 325.849, 1155.8 )
+scale = Vector2( 2.80941, 3.59422 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump3/Tree4"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump3/Tree4"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump3/Tree4"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree5" type="StaticBody2D" parent="YSort/TreeClump3"]
+material = SubResource( 18 )
+position = Vector2( -304.196, 1027.66 )
+scale = Vector2( 2.80941, 3.59422 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump3/Tree5"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump3/Tree5"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump3/Tree5"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree6" type="StaticBody2D" parent="YSort/TreeClump3"]
+material = SubResource( 18 )
+position = Vector2( -768.72, 1054.36 )
+scale = Vector2( 2.18937, 2.80096 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump3/Tree6"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump3/Tree6"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump3/Tree6"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree7" type="StaticBody2D" parent="YSort/TreeClump3"]
+material = SubResource( 18 )
+position = Vector2( -1110.44, 1033 )
+scale = Vector2( 2.90879, 3.72135 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump3/Tree7"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump3/Tree7"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump3/Tree7"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="Tree8" type="StaticBody2D" parent="YSort/TreeClump3"]
+material = SubResource( 18 )
+position = Vector2( -1142.48, 1529.56 )
+scale = Vector2( 2.90879, 3.72135 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="Sprite" parent="YSort/TreeClump3/Tree8"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 0.580392 )
+position = Vector2( 0.689941, 23.6472 )
+scale = Vector2( 0.478625, 0.187414 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="MeshInstance2D" parent="YSort/TreeClump3/Tree8"]
+light_mask = 5
+material = SubResource( 19 )
+position = Vector2( 2.5448, -246.619 )
+scale = Vector2( 0.8, 0.8 )
+mesh = SubResource( 20 )
+texture = ExtResource( 4 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="YSort/TreeClump3/Tree8"]
+position = Vector2( 2.46768, 2.32532 )
+shape = SubResource( 21 )
+
+[node name="DescentStart" type="Area2D" parent="."]
+position = Vector2( 1444, 918.38 )
+rotation = 1.57079
+scale = Vector2( 7.48808, 53.0653 )
+input_pickable = false
+monitorable = false
+script = SubResource( 22 )
+interaction_script = "res://assets/dialogues/JSON Dialogues/Day2-Morning/TheFallStart.json"
+self_destruct = true
+blocking = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DescentStart"]
+shape = SubResource( 23 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DescentStart"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DescentStart/StaticBody2D"]
+shape = SubResource( 23 )
+disabled = true
+[connection signal="area_entered" from="DescentStart" to="DescentStart" method="_on_InteractableArea_area_entered"]

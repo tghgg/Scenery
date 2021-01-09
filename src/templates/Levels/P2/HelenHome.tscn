@@ -1,0 +1,385 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/Templates/VFX/Light/MildHighlight.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Templates/Objects/InteractableObject.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/textures/tilesets/town/helen_house/Home.tres" type="TileSet" id=4]
+[ext_resource path="res://src/Templates/Levels/BaseTileScene.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Templates/BaseScene/ExitNode.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Templates/Objects/Trees/Tree3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/textures/objects/town/trees/grass.png" type="Texture" id=8]
+[ext_resource path="res://src/Templates/Objects/Town/PictureFrame.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Templates/Objects/Trees/Tree1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Templates/Levels/ShadowTileset.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Templates/Objects/Town/BigBall.tscn" type="PackedScene" id=12]
+
+[node name="Home" instance=ExtResource( 5 )]
+
+[node name="Map" parent="BG" index="0"]
+tile_set = ExtResource( 4 )
+tile_data = PoolIntArray( 0, -2147483646, 0, 1, -2147483646, 0, 2, -2147483646, 0, 3, -2147483646, 0, 4, -2147483646, 0, 5, -2147483646, 0, 6, -2147483646, 0, 7, -2147483646, 0, 8, -2147483646, 0, 9, -2147483646, 0, 10, -2147483646, 0, 11, -2147483646, 0, 12, -2147483646, 0, 13, -2147483646, 0, 14, -2147483646, 0, 15, -2147483646, 0, 16, -2147483646, 0, 17, -2147483646, 0, 18, -2147483646, 0, 19, -2147483646, 0, 20, -2147483646, 0, 21, -2147483646, 0, 22, -2147483646, 0, 65536, -2147483646, 0, 65537, -2147483646, 0, 65538, -2147483646, 0, 65539, -2147483646, 0, 65540, -2147483646, 0, 65541, -2147483646, 0, 65542, -2147483646, 0, 65543, -2147483646, 0, 65544, -2147483646, 0, 65545, -2147483646, 0, 65546, -2147483646, 0, 65547, -2147483646, 0, 65548, -2147483646, 0, 65549, -2147483646, 0, 65550, -2147483646, 0, 65551, -2147483647, 0, 65552, -2147483641, 0, 65553, -2147483641, 0, 65554, -2147483641, 0, 65555, -2147483641, 0, 65556, -2147483641, 0, 65557, -2147483641, 0, 65558, -2147483646, 0, 131072, -2147483646, 0, 131073, -2147483646, 0, 131074, -2147483646, 0, 131075, -2147483646, 0, 131076, -2147483646, 0, 131077, -2147483646, 0, 131078, -2147483646, 0, 131079, -2147483646, 0, 131080, -2147483646, 0, 131081, -2147483646, 0, 131082, -2147483646, 0, 131083, -2147483646, 0, 131084, -2147483646, 0, 131085, -2147483646, 0, 131086, -2147483646, 0, 131087, -2147483647, 0, 131088, -2147483641, 0, 131089, -2147483641, 0, 131090, -2147483641, 0, 131091, -2147483641, 0, 131092, -2147483641, 0, 131093, -2147483641, 0, 131094, -2147483646, 0, 196608, -2147483646, 0, 196609, -2147483646, 0, 196610, -2147483646, 0, 196611, -2147483646, 0, 196612, -2147483646, 0, 196613, -2147483646, 0, 196614, -2147483646, 0, 196615, -2147483646, 0, 196616, -2147483646, 0, 196617, -2147483646, 0, 196618, -2147483646, 0, 196619, -2147483646, 0, 196620, -2147483646, 0, 196621, -2147483646, 0, 196622, -2147483646, 0, 196623, -2147483642, 0, 196624, -2147483645, 0, 196625, -2147483645, 0, 196626, -2147483645, 0, 196627, -2147483645, 0, 196628, -2147483645, 0, 196629, -2147483645, 0, 196630, -2147483646, 0, 262144, -2147483646, 0, 262145, -2147483646, 0, 262146, -2147483646, 0, 262147, -2147483646, 0, 262148, -2147483646, 0, 262149, -2147483646, 0, 262150, -2147483646, 0, 262151, -2147483646, 0, 262152, -2147483646, 0, 262153, -2147483647, 0, 262154, -2147483647, 0, 262155, -2147483647, 0, 262156, -2147483646, 0, 262157, -2147483646, 0, 262158, -2147483646, 0, 262159, -2147483642, 0, 262160, -2147483645, 0, 262161, -2147483645, 0, 262162, -2147483645, 0, 262163, -2147483645, 0, 262164, -2147483645, 0, 262165, -2147483645, 0, 262166, -2147483646, 0, 327680, -2147483646, 0, 327681, -2147483646, 0, 327682, -2147483646, 0, 327683, -2147483646, 0, 327684, -2147483646, 0, 327685, -2147483646, 0, 327686, -2147483646, 0, 327687, -2147483646, 0, 327688, -2147483646, 0, 327689, -2147483647, 0, 327690, -2147483647, 0, 327691, -2147483647, 0, 327692, -2147483646, 0, 327693, -2147483646, 0, 327694, -2147483646, 0, 327695, -2147483642, 0, 327696, -2147483645, 0, 327697, -2147483645, 0, 327698, -2147483645, 0, 327699, -2147483645, 0, 327700, -2147483645, 0, 327701, -2147483645, 0, 327702, -2147483646, 0, 393216, -2147483646, 0, 393217, -2147483646, 0, 393218, -2147483646, 0, 393219, -2147483646, 0, 393220, -2147483646, 0, 393221, -2147483646, 0, 393222, -2147483646, 0, 393223, -2147483646, 0, 393224, -2147483646, 0, 393225, -2147483643, 0, 393226, -2147483643, 0, 393227, -2147483643, 0, 393228, -2147483646, 0, 393229, -2147483646, 0, 393230, -2147483646, 0, 393231, -2147483642, 0, 393232, -2147483645, 0, 393233, -2147483645, 0, 393234, -2147483645, 0, 393235, -2147483645, 0, 393236, -2147483645, 0, 393237, -2147483645, 0, 393238, -2147483646, 0, 458752, -2147483646, 0, 458753, -2147483646, 0, 458754, -2147483646, 0, 458755, -2147483646, 0, 458756, -2147483646, 0, 458757, -2147483646, 0, 458758, -2147483646, 0, 458759, -2147483646, 0, 458760, -2147483646, 0, 458761, -2147483643, 0, 458762, -2147483643, 0, 458763, -2147483643, 0, 458764, -2147483646, 0, 458765, -2147483646, 0, 458766, -2147483646, 0, 458767, 1073741830, 0, 458768, -2147483642, 0, 458769, -2147483645, 0, 458770, -2147483645, 0, 458771, -2147483645, 0, 458772, -2147483645, 0, 458773, -2147483645, 0, 458774, -2147483646, 0, 524288, -2147483646, 0, 524289, -2147483646, 0, 524290, -2147483646, 0, 524291, -2147483646, 0, 524292, -2147483646, 0, 524293, -2147483646, 0, 524294, -2147483646, 0, 524295, -2147483646, 0, 524296, -2147483646, 0, 524297, -2147483646, 0, 524298, -2147483643, 0, 524299, -2147483646, 0, 524300, -2147483646, 0, 524301, -2147483646, 0, 524302, -2147483646, 0, 524303, -536870906, 0, 524304, 536870918, 0, 524305, 6, 0, 524306, 6, 0, 524307, 6, 0, 524308, 6, 0, 524309, 6, 0, 524310, -2147483646, 0, 589824, -2147483646, 0, 589825, -2147483647, 0, 589826, -2147483647, 0, 589827, -2147483647, 0, 589828, -2147483647, 0, 589829, -2147483647, 0, 589830, 11, 0, 589831, -2147483647, 0, 589832, -2147483647, 0, 589833, -2147483647, 0, 589834, -2147483643, 0, 589835, -2147483647, 0, 589836, -2147483647, 0, 589837, -2147483647, 0, 589838, -2147483647, 0, 589839, -2147483647, 0, 589840, -2147483648, 0, 589842, -2147483648, 0, 589844, -2147483648, 0, 589846, -2147483646, 0, 655360, -2147483646, 0, 655361, -2147483647, 0, 655362, -2147483647, 0, 655363, -2147483647, 0, 655364, -2147483647, 0, 655365, -2147483647, 0, 655367, -2147483647, 0, 655368, -2147483647, 0, 655369, -2147483647, 0, 655370, -2147483643, 0, 655371, -2147483647, 0, 655372, -2147483647, 0, 655373, -2147483647, 0, 655374, -2147483647, 0, 655375, -2147483647, 0, 655382, -2147483646, 0, 720896, -2147483646, 0, 720897, -2147483648, 0, 720899, 1073741824, 0, 720901, -2147483648, 0, 720903, 1073741824, 0, 720905, 1073741829, 0, 720906, 1073741824, 0, 720908, -2147483648, 0, 720910, -2147483648, 0, 720912, -2147483648, 0, 720914, -2147483648, 0, 720916, -2147483648, 0, 720918, -2147483646, 0, 786432, -2147483646, 0, 786441, 1073741829, 0, 786454, -2147483646, 0, 851968, -2147483646, 0, 851969, -2147483643, 0, 851970, -2147483643, 0, 851971, -2147483643, 0, 851972, -2147483643, 0, 851973, -2147483643, 0, 851974, -2147483643, 0, 851975, -2147483643, 0, 851976, -2147483643, 0, 851977, -2147483643, 0, 851978, -2147483643, 0, 851979, -2147483643, 0, 851980, -2147483643, 0, 851981, -2147483643, 0, 851982, -2147483643, 0, 851983, -2147483643, 0, 851984, -2147483643, 0, 851985, -2147483643, 0, 851986, -2147483643, 0, 851987, -2147483643, 0, 851988, -2147483643, 0, 851989, -2147483643, 0, 851990, -2147483646, 0, 917504, -2147483646, 0, 917505, -2147483646, 0, 917506, -2147483646, 0, 917507, -2147483646, 0, 917508, -2147483646, 0, 917509, -2147483646, 0, 917510, -2147483646, 0, 917511, -2147483646, 0, 917512, -2147483646, 0, 917513, -2147483646, 0, 917514, -2147483643, 0, 917515, -2147483646, 0, 917516, -2147483646, 0, 917517, -2147483646, 0, 917518, -2147483646, 0, 917519, -2147483646, 0, 917520, -2147483646, 0, 917521, -2147483646, 0, 917522, -2147483646, 0, 917523, -2147483646, 0, 917524, -2147483643, 0, 917525, -2147483646, 0, 917526, -2147483646, 0, 983040, -2147483646, 0, 983041, -2147483646, 0, 983042, -2147483646, 0, 983043, -2147483646, 0, 983044, -2147483646, 0, 983045, -2147483646, 0, 983046, -2147483646, 0, 983047, -2147483646, 0, 983048, -2147483646, 0, 983049, -2147483646, 0, 983050, -2147483643, 0, 983051, -2147483646, 0, 983052, -2147483646, 0, 983053, -2147483646, 0, 983054, -2147483646, 0, 983055, -2147483646, 0, 983056, -2147483646, 0, 983057, -2147483646, 0, 983058, -2147483646, 0, 983059, -2147483646, 0, 983060, -2147483643, 0, 983061, -2147483646, 0, 983062, -2147483646, 0, 1048576, -2147483646, 0, 1048577, -2147483646, 0, 1048578, -2147483646, 0, 1048579, -2147483646, 0, 1048580, -2147483646, 0, 1048581, -2147483646, 0, 1048582, -2147483646, 0, 1048583, -2147483646, 0, 1048584, -2147483646, 0, 1048585, -2147483646, 0, 1048586, 536870922, 0, 1048587, -2147483646, 0, 1048588, -2147483646, 0, 1048589, -2147483646, 0, 1048590, -2147483646, 0, 1048591, -2147483646, 0, 1048592, -2147483646, 0, 1048593, -2147483646, 0, 1048594, -2147483646, 0, 1048595, -2147483646, 0, 1048596, -2147483643, 0, 1048597, -2147483646, 0, 1048598, -2147483646, 0, 1114112, -2147483646, 0, 1114113, -2147483646, 0, 1114114, -2147483646, 0, 1114115, -2147483646, 0, 1114116, -2147483646, 0, 1114117, -2147483646, 0, 1114118, -2147483646, 0, 1114119, -2147483646, 0, 1114120, -2147483646, 0, 1114121, -2147483646, 0, 1114122, 536870922, 0, 1114123, -2147483646, 0, 1114124, -2147483646, 0, 1114125, -2147483646, 0, 1114126, -2147483646, 0, 1114127, -2147483646, 0, 1114128, -2147483646, 0, 1114129, -2147483646, 0, 1114130, -2147483646, 0, 1114131, -2147483646, 0, 1114132, -2147483646, 0, 1114133, -2147483646, 0, 1114134, -2147483646, 0 )
+
+[node name="TileMap" type="TileMap" parent="BG/Map" index="0"]
+tile_set = ExtResource( 4 )
+format = 1
+tile_data = PoolIntArray( 131102, -536870900, 0, 1048606, 536870924, 0 )
+
+[node name="ShadowTileset" parent="BG/Map" index="1" instance=ExtResource( 11 )]
+tile_data = PoolIntArray( 196623, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393232, 1610612736, 0, 458768, 0, 0, 458769, -1610612736, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 3145968, 536870912, 0, 3145969, 536870912, 0, 3145970, 536870912, 0, 3145971, 536870912, 0, 3145972, 536870912, 0, 3145973, 536870912, 0, 3145974, 536870912, 0, 3145975, 536870912, 0, 3145976, 536870912, 0, 3145977, 536870912, 0, 3145978, 536870912, 0, 3145979, 536870912, 0, 3145980, 536870912, 0, 3145981, 536870912, 0, 3145982, 536870912, 0, 3145983, 536870912, 0, 6291600, 536870912, 0, 6291601, 536870912, 0, 6291602, 536870912, 0, 6291603, 536870912, 0, 6291604, 536870912, 0, 6291605, 536870912, 0, 6291606, 536870912, 0, 6291607, 536870912, 0, 6291608, 536870912, 0, 6291609, 536870912, 0, 6291610, 536870912, 0, 6291611, 536870912, 0, 6291612, 536870912, 0, 6291613, 536870912, 0, 6291614, 536870912, 0, 6291615, 536870912, 0, 6291616, 536870912, 0, 6291617, 536870912, 0, 6291618, 536870912, 0, 6291619, 536870912, 0, 6291620, 536870912, 0, 6291621, 536870912, 0, 6291622, 536870912, 0, 6291623, 536870912, 0, 6291624, 536870912, 0, 6291625, 536870912, 0, 6291626, 536870912, 0, 6291627, 536870912, 0, 6291628, 536870912, 0, 6291629, 536870912, 0, 6291630, 536870912, 0, 6291631, 536870912, 0, 6291632, 536870912, 0, 6291633, 536870912, 0, 6291634, 536870912, 0, 6291635, 536870912, 0, 6291636, 536870912, 0, 6291637, 536870912, 0, 6291638, 536870912, 0, 6291639, 536870912, 0, 6291640, 536870912, 0, 6291641, 536870912, 0, 6291642, 536870912, 0, 6291643, 536870912, 0, 6291644, 536870912, 0, 6291645, 536870912, 0, 6291646, 536870912, 0, 6291647, 536870912, 0, 7274752, 1073741824, 0, 7274753, 1073741824, 0, 7274754, 1073741824, 0, 7274755, 1073741824, 0, 7274756, 1073741824, 0, 7274757, 1073741824, 0, 7274758, 1073741824, 0, 7274759, 1073741824, 0, 7274760, 1073741824, 0, 7274761, 1073741824, 0, 7274762, 1073741824, 0, 7274763, 1073741824, 0, 7274764, 1073741824, 0, 7274765, 1073741824, 0, 7274766, 1073741824, 0, 7274767, 1073741824, 0, 7274768, 1073741824, 0, 7340304, 1073741824, 0, 7405840, 1073741824, 0, 7471376, 1073741824, 0, 7536912, 1073741824, 0, 7602448, 1073741824, 0, 7667984, 1073741824, 0, 7733520, 1073741824, 0, 7799056, 1073741824, 0, 7864592, 1073741824, 0, 7930128, 1073741824, 0, 7995664, 1073741824, 0, 8061200, 1073741824, 0, 8126736, 1073741824, 0, 8192272, 1073741824, 0, 8257808, 1073741824, 0, 8323344, 1073741824, 0, 11534352, 536870912, 0, 11534353, 536870912, 0, 11534354, 536870912, 0, 11534355, 536870912, 0, 11534356, 536870912, 0, 11534357, 536870912, 0, 11534358, 536870912, 0, 11534359, 536870912, 0, 11534360, 536870912, 0, 11534361, 536870912, 0, 11534362, 536870912, 0, 11534363, 536870912, 0, 11534364, 536870912, 0, 11534365, 536870912, 0, 11534366, 536870912, 0, 11534367, 536870912, 0, 11534368, 536870912, 0, 11534369, 536870912, 0, 11534370, 536870912, 0, 11534371, 536870912, 0, 11534372, 536870912, 0, 11534373, 536870912, 0, 11534374, 536870912, 0, 11534375, 536870912, 0, 11534376, 536870912, 0, 11534377, 536870912, 0, 11534378, 536870912, 0, 11534379, 536870912, 0, 11534380, 536870912, 0, 11534381, 536870912, 0, 11534382, 536870912, 0, 11534383, 536870912, 0, 11534384, 536870912, 0, 11534385, 536870912, 0, 11534386, 536870912, 0, 11534387, 536870912, 0, 11534388, 536870912, 0, 11534389, 536870912, 0, 11534390, 536870912, 0, 11534391, 536870912, 0, 11534392, 536870912, 0, 11534393, 536870912, 0, 11534394, 536870912, 0, 11534395, 536870912, 0, 11534396, 536870912, 0, 11534397, 536870912, 0, 11534398, 536870912, 0, 11534399, 536870912, 0, 11534400, 536870912, 0, 11534401, 536870912, 0, 11534402, 536870912, 0, 11534403, 536870912, 0, 11534404, 536870912, 0, 11534405, 536870912, 0, 11534406, 536870912, 0, 11534407, 536870912, 0, 11534408, 536870912, 0, 11534409, 536870912, 0, 11534410, 536870912, 0, 11534411, 536870912, 0, 11534412, 536870912, 0, 11534413, 536870912, 0, 11534414, 536870912, 0, 11534415, 536870912, 0, 11534416, 536870912, 0, 11534417, 536870912, 0, 11534418, 536870912, 0, 11534419, 536870912, 0, 11534420, 536870912, 0, 11534421, 536870912, 0, 11534422, 536870912, 0, 11534423, 536870912, 0, 11534424, 536870912, 0, 11534425, 536870912, 0, 11534426, 536870912, 0, 11534427, 536870912, 0, 11534428, 536870912, 0, 11534429, 536870912, 0, 11534430, 536870912, 0, 11534431, 536870912, 0, 11534432, 536870912, 0, 11534433, 536870912, 0, 11534434, 536870912, 0, 11534435, 536870912, 0, 11534436, 536870912, 0, 11534437, 536870912, 0, 11534438, 536870912, 0, 11534439, 536870912, 0, 11534440, 536870912, 0, 11534441, 536870912, 0, 11534442, 536870912, 0, 11534443, 536870912, 0, 11534444, 536870912, 0, 11534445, 536870912, 0, 11534446, 536870912, 0, 11534447, 536870912, 0, 11534448, 536870912, 0, 11534449, 536870912, 0, 11534450, 536870912, 0, 11534451, 536870912, 0, 11534452, 536870912, 0, 11534453, 536870912, 0, 11534454, 536870912, 0, 11534455, 536870912, 0, 11534456, 536870912, 0, 11534457, 536870912, 0, 11534458, 536870912, 0, 11534459, 536870912, 0, 11534460, 536870912, 0, 11534461, 536870912, 0, 11534462, 536870912, 0, 11534463, 536870912, 0, 11534464, 536870912, 0, 11534465, 536870912, 0, 11534466, 536870912, 0, 11534467, 536870912, 0, 11534468, 536870912, 0, 11534469, 536870912, 0, 11534470, 536870912, 0, 11534471, 536870912, 0, 11534472, 536870912, 0, 11534473, 536870912, 0, 11534474, 536870912, 0, 11534475, 536870912, 0, 11534476, 536870912, 0, 11534477, 536870912, 0, 11534478, 536870912, 0, 11534479, 536870912, 0, 11534480, 536870912, 0, 11534481, 536870912, 0, 11534482, 536870912, 0, 11534483, 536870912, 0, 11534484, 536870912, 0, 11534485, 536870912, 0, 11534486, 536870912, 0, 11534487, 536870912, 0, 11534488, 536870912, 0, 11534489, 536870912, 0, 11534490, 536870912, 0, 11534491, 536870912, 0, 11534492, 536870912, 0, 11534493, 536870912, 0, 11534494, 536870912, 0, 11534495, 536870912, 0, 11534512, 536870912, 0, 11534513, 536870912, 0, 11534514, 536870912, 0, 11534515, 536870912, 0, 11534516, 536870912, 0, 11534517, 536870912, 0, 11534518, 536870912, 0, 11534519, 536870912, 0, 11534520, 536870912, 0, 11534521, 536870912, 0, 11534522, 536870912, 0, 11534523, 536870912, 0, 11534524, 536870912, 0, 11534525, 536870912, 0, 11534526, 536870912, 0, 11534527, 536870912, 0, 11534528, 536870912, 0, 11534529, 536870912, 0, 11534530, 536870912, 0, 11534531, 536870912, 0, 11534532, 536870912, 0, 11534533, 536870912, 0, 11534534, 536870912, 0, 11534535, 536870912, 0, 11534536, 536870912, 0, 11534537, 536870912, 0, 11534538, 536870912, 0, 11534539, 536870912, 0, 11534540, 536870912, 0, 11534541, 536870912, 0, 11534542, 536870912, 0, 11534543, 536870912, 0, 11534544, 536870912, 0, 11534545, 536870912, 0, 11534546, 536870912, 0, 11534547, 536870912, 0, 11534548, 536870912, 0, 11534549, 536870912, 0, 11534550, 536870912, 0, 11534551, 536870912, 0, 11534552, 536870912, 0, 11534553, 536870912, 0, 11534554, 536870912, 0, 11534555, 536870912, 0, 11534556, 536870912, 0, 11534557, 536870912, 0, 11534558, 536870912, 0, 11534559, 536870912, 0, 11534560, 536870912, 0, 11534561, 536870912, 0, 11534562, 536870912, 0, 11534563, 536870912, 0, 11534564, 536870912, 0, 11534565, 536870912, 0, 11534566, 536870912, 0, 11534567, 536870912, 0, 11534568, 536870912, 0, 11534569, 536870912, 0, 11534570, 536870912, 0, 11534571, 536870912, 0, 11534572, 536870912, 0, 11534573, 536870912, 0, 11534574, 536870912, 0, 11534575, 536870912, 0, 11534576, 536870912, 0, 11534577, 536870912, 0, 11534578, 536870912, 0, 11534579, 536870912, 0, 11534580, 536870912, 0, 11534581, 536870912, 0, 11534582, 536870912, 0, 11534583, 536870912, 0, 11534584, 536870912, 0, 11534585, 536870912, 0, 11534586, 536870912, 0, 11534587, 536870912, 0, 11534588, 536870912, 0, 11534589, 536870912, 0, 11534590, 536870912, 0, 11534591, 536870912, 0 )
+
+[node name="Base" parent="BG/Map" index="2"]
+position = Vector2( 886.998, 473.73 )
+
+[node name="Sprite" parent="BG/Map/Base" index="0"]
+texture = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BG/Map/Base/Sprite" index="0"]
+
+[node name="interactableObject" parent="BG/Map/Base/Sprite" index="1" instance=ExtResource( 3 )]
+position = Vector2( 1535.91, 252.935 )
+scale = Vector2( 4.25487, 1.65414 )
+
+[node name="interactableObject8" parent="BG/Map/Base/Objects" index="0" instance=ExtResource( 3 )]
+position = Vector2( 1535.91, 808.935 )
+scale = Vector2( 4.62639, 4.62639 )
+
+[node name="Tree3" parent="BG/Map/Base/Objects" index="1" instance=ExtResource( 7 )]
+position = Vector2( 1787.39, 102.563 )
+scale = Vector2( 0.685276, 0.685276 )
+
+[node name="Tree4" parent="BG/Map/Base/Objects" index="2" instance=ExtResource( 7 )]
+position = Vector2( 1315.63, 64.9022 )
+scale = Vector2( 0.601658, 0.601658 )
+
+[node name="Tree2" parent="BG/Map/Base/Objects" index="3" instance=ExtResource( 10 )]
+position = Vector2( 1647.2, 6.0618 )
+
+[node name="Gras" type="YSort" parent="BG/Map/Base/Objects" index="4"]
+visible = false
+position = Vector2( 511.236, -365.274 )
+
+[node name="Sprite" type="Sprite" parent="BG/Map/Base/Objects/Gras" index="0"]
+position = Vector2( 1349.76, 380.422 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="BG/Map/Base/Objects/Gras" index="1"]
+position = Vector2( 1311.71, 350.131 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="BG/Map/Base/Objects/Gras" index="2"]
+position = Vector2( 1295.83, 389.645 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite4" type="Sprite" parent="BG/Map/Base/Objects/Gras" index="3"]
+position = Vector2( 1347.38, 434.352 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite5" type="Sprite" parent="BG/Map/Base/Objects/Gras" index="4"]
+position = Vector2( 1265.42, 348.826 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite6" type="Sprite" parent="BG/Map/Base/Objects/Gras" index="5"]
+position = Vector2( 1265.42, 421.88 )
+scale = Vector2( 1.41379, 1.41379 )
+texture = ExtResource( 8 )
+
+[node name="Gras2" type="YSort" parent="BG/Map/Base/Objects" index="5"]
+position = Vector2( 473.095, -96.1707 )
+
+[node name="Sprite" type="Sprite" parent="BG/Map/Base/Objects/Gras2" index="0"]
+position = Vector2( 1349.76, 380.422 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="BG/Map/Base/Objects/Gras2" index="1"]
+position = Vector2( 1311.71, 350.131 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="BG/Map/Base/Objects/Gras2" index="2"]
+position = Vector2( 1295.83, 389.645 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite4" type="Sprite" parent="BG/Map/Base/Objects/Gras2" index="3"]
+position = Vector2( 1347.38, 434.352 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite5" type="Sprite" parent="BG/Map/Base/Objects/Gras2" index="4"]
+position = Vector2( 1265.42, 348.826 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite6" type="Sprite" parent="BG/Map/Base/Objects/Gras2" index="5"]
+position = Vector2( 1265.42, 421.88 )
+scale = Vector2( 1.41379, 1.41379 )
+texture = ExtResource( 8 )
+
+[node name="Gras3" type="YSort" parent="BG/Map/Base/Objects" index="6"]
+position = Vector2( 339.603, -299.588 )
+rotation = -0.0520135
+
+[node name="Sprite" type="Sprite" parent="BG/Map/Base/Objects/Gras3" index="0"]
+position = Vector2( 1349.76, 380.422 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="BG/Map/Base/Objects/Gras3" index="1"]
+position = Vector2( 1311.71, 350.131 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="BG/Map/Base/Objects/Gras3" index="2"]
+position = Vector2( 1295.83, 389.645 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite4" type="Sprite" parent="BG/Map/Base/Objects/Gras3" index="3"]
+position = Vector2( 1347.38, 434.352 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite5" type="Sprite" parent="BG/Map/Base/Objects/Gras3" index="4"]
+position = Vector2( 1265.42, 348.826 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite6" type="Sprite" parent="BG/Map/Base/Objects/Gras3" index="5"]
+position = Vector2( 1265.42, 421.88 )
+scale = Vector2( 1.41379, 1.41379 )
+texture = ExtResource( 8 )
+
+[node name="Gras4" type="YSort" parent="BG/Map/Base/Objects" index="7"]
+position = Vector2( 89.5696, -369.512 )
+
+[node name="Sprite" type="Sprite" parent="BG/Map/Base/Objects/Gras4" index="0"]
+position = Vector2( 1349.76, 380.422 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="BG/Map/Base/Objects/Gras4" index="1"]
+position = Vector2( 1311.71, 350.131 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="BG/Map/Base/Objects/Gras4" index="2"]
+position = Vector2( 1295.83, 389.645 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite4" type="Sprite" parent="BG/Map/Base/Objects/Gras4" index="3"]
+position = Vector2( 1347.38, 434.352 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite5" type="Sprite" parent="BG/Map/Base/Objects/Gras4" index="4"]
+position = Vector2( 1265.42, 348.826 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite6" type="Sprite" parent="BG/Map/Base/Objects/Gras4" index="5"]
+position = Vector2( 1265.42, 421.88 )
+scale = Vector2( 1.41379, 1.41379 )
+texture = ExtResource( 8 )
+
+[node name="Gras5" type="YSort" parent="BG/Map/Base/Objects" index="8"]
+position = Vector2( -5.78217, -168.214 )
+
+[node name="Sprite" type="Sprite" parent="BG/Map/Base/Objects/Gras5" index="0"]
+position = Vector2( 1349.76, 380.422 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="BG/Map/Base/Objects/Gras5" index="1"]
+position = Vector2( 1311.71, 350.131 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="BG/Map/Base/Objects/Gras5" index="2"]
+position = Vector2( 1295.83, 389.645 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite4" type="Sprite" parent="BG/Map/Base/Objects/Gras5" index="3"]
+position = Vector2( 1347.38, 434.352 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite5" type="Sprite" parent="BG/Map/Base/Objects/Gras5" index="4"]
+position = Vector2( 1265.42, 348.826 )
+scale = Vector2( 0.84267, 0.84267 )
+texture = ExtResource( 8 )
+
+[node name="Sprite6" type="Sprite" parent="BG/Map/Base/Objects/Gras5" index="5"]
+position = Vector2( 1265.42, 421.88 )
+scale = Vector2( 1.41379, 1.41379 )
+texture = ExtResource( 8 )
+
+[node name="Pictures" type="Node2D" parent="BG/Map/Base/Objects" index="9"]
+
+[node name="PictureFrame" parent="BG/Map/Base/Objects/Pictures" index="0" instance=ExtResource( 9 )]
+position = Vector2( 618.205, 766.032 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Objects/Pictures/PictureFrame" index="0"]
+interaction_scripts = [ "res://assets/dialogues/Day3-Noon/Objects/Home/PictureFrame.txt" ]
+
+[node name="Area2D" parent="BG/Map/Base/Objects/Pictures/PictureFrame/InteractableComponent" index="0"]
+monitorable = true
+
+[node name="PictureFrame2" parent="BG/Map/Base/Objects/Pictures" index="1" instance=ExtResource( 9 )]
+position = Vector2( 873.838, 766.032 )
+
+[node name="PictureFrame3" parent="BG/Map/Base/Objects/Pictures" index="2" instance=ExtResource( 9 )]
+position = Vector2( 1095.83, 762.669 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Objects/Pictures/PictureFrame3" index="0"]
+position = Vector2( 3.36353, -183.315 )
+interaction_scripts = [ "res://assets/dialogues/Day3-Noon/Objects/Home/PictureFrameParents.txt" ]
+
+[node name="Area2D" parent="BG/Map/Base/Objects/Pictures/PictureFrame3/InteractableComponent" index="0"]
+monitorable = true
+
+[node name="CollisionShape2D" parent="BG/Map/Base/Objects/Pictures/PictureFrame3/InteractableComponent/Area2D" index="0"]
+position = Vector2( 0, 354.393 )
+
+[node name="Sprite" parent="BG/Map/Base/Objects/Pictures/PictureFrame3" index="1"]
+position = Vector2( 3.36353, 3.36353 )
+frame = 1
+
+[node name="interactableObject2" parent="BG/Map/Base/Objects" index="10" instance=ExtResource( 3 )]
+position = Vector2( -670.557, 1130.01 )
+scale = Vector2( 2.0185, 4.44088 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Objects/interactableObject2" index="0"]
+visible = false
+
+[node name="Area2D" parent="BG/Map/Base/Objects/interactableObject2/InteractableComponent" index="0"]
+monitorable = false
+
+[node name="interactableObject3" parent="BG/Map/Base/Objects" index="11" instance=ExtResource( 3 )]
+position = Vector2( -526.557, 1278.01 )
+rotation = -1.57079
+scale = Vector2( 1.26176, 3.87569 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Objects/interactableObject3" index="0"]
+visible = false
+
+[node name="PictureFrame" parent="BG/Map/Base/Objects" index="12" instance=ExtResource( 9 )]
+position = Vector2( -444.007, 774.834 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Objects/PictureFrame" index="0"]
+flash_dialogue = "A original Gustave Doré painting.
+Mom's got a few more paintings like this in the basement.
+"
+
+[node name="Area2D" parent="BG/Map/Base/Objects/PictureFrame/InteractableComponent" index="0"]
+monitorable = true
+
+[node name="Sprite" parent="BG/Map/Base/Objects/PictureFrame" index="1"]
+position = Vector2( -0.561218, 0.614899 )
+scale = Vector2( 4.7378, 1.59598 )
+
+[node name="BigBall" parent="BG/Map/Base/Objects" index="13" instance=ExtResource( 12 )]
+position = Vector2( 495.339, 256.578 )
+
+[node name="InteractableComponent" parent="BG/Map/Base/Objects/BigBall" index="0"]
+flash_dialogue = "Our altair.
+Helen, praying: \"...\"
+Helen, praying: \"Camon.\"
+It's been here since before I was born, a crazy long time."
+
+[node name="ExitNode" parent="BG/Map" index="3"]
+position = Vector2( 2616.73, 2037.9 )
+
+[node name="Bounds" parent="BG/Map" index="4"]
+visible = false
+collision_layer = 0
+collision_mask = 0
+
+[node name="ExitNode2" parent="BG/Map" index="5" instance=ExtResource( 6 )]
+position = Vector2( 1354.47, 2225.02 )
+
+[node name="ExitNode3" parent="BG/Map" index="6" instance=ExtResource( 6 )]
+position = Vector2( 837.451, 1473.66 )
+rotation = 3.14159
+exit_scene = "res://src/Scenes/Intro/Plane2/Day 3/Helen/HomeBasement.tscn"
+
+[node name="Effects" parent="." index="1"]
+position = Vector2( 1024.57, 418.601 )
+
+[node name="CanvasModulate" parent="Effects" index="0"]
+color = Color( 0.180392, 0.180392, 0.160784, 1 )
+
+[node name="MildHighlight" parent="Effects" index="1" instance=ExtResource( 1 )]
+position = Vector2( 1401.76, -287.145 )
+scale = Vector2( 12.6244, 22.1693 )
+color = Color( 0.996078, 1, 0.666667, 1 )
+energy = 0.5
+
+[node name="MildHighlight2" parent="Effects" index="2" instance=ExtResource( 1 )]
+position = Vector2( 317.464, 346.147 )
+scale = Vector2( 2.62892, 2.37068 )
+texture_scale = 5.0
+color = Color( 0.996078, 1, 0.666667, 1 )
+energy = 0.7
+
+[node name="MildHighlight3" parent="Effects" index="3" instance=ExtResource( 1 )]
+position = Vector2( 745.353, 367.141 )
+scale = Vector2( 2.62892, 2.37068 )
+texture_scale = 5.0
+color = Color( 0.996078, 1, 0.666667, 1 )
+energy = 0.5
+
+[node name="MildHighlight4" parent="Effects" index="4" instance=ExtResource( 1 )]
+position = Vector2( -149.296, 354.89 )
+scale = Vector2( 2.62892, 2.37068 )
+texture_scale = 5.0
+color = Color( 0.996078, 1, 0.666667, 1 )
+energy = 0.5
+
+[node name="MildHighlight6" parent="Effects" index="5" instance=ExtResource( 1 )]
+position = Vector2( 1439.05, -149.883 )
+scale = Vector2( 4.05197, 3.2634 )
+texture_scale = 5.0
+color = Color( 0.996078, 1, 0.666667, 1 )
+
+[node name="MildHighlight7" parent="Effects" index="6" instance=ExtResource( 1 )]
+position = Vector2( -566.391, 1065.32 )
+scale = Vector2( 6.94522, 5.85499 )
+texture_scale = 5.0
+color = Color( 0.996078, 1, 0.666667, 1 )
+
+[node name="MildHighlight8" parent="Effects" index="7" instance=ExtResource( 1 )]
+position = Vector2( 1517.44, 1318.94 )
+scale = Vector2( 6.94522, 5.85499 )
+texture_scale = 5.0
+color = Color( 0.996078, 1, 0.666667, 1 )
+
+[editable path="BG/Map"]
+
+[editable path="BG/Map/Base/Objects/Tree2"]
+
+[editable path="BG/Map/Base/Objects/Pictures/PictureFrame"]
+
+[editable path="BG/Map/Base/Objects/Pictures/PictureFrame/InteractableComponent"]
+
+[editable path="BG/Map/Base/Objects/Pictures/PictureFrame3"]
+
+[editable path="BG/Map/Base/Objects/Pictures/PictureFrame3/InteractableComponent"]
+
+[editable path="BG/Map/Base/Objects/interactableObject2"]
+
+[editable path="BG/Map/Base/Objects/interactableObject2/InteractableComponent"]
+
+[editable path="BG/Map/Base/Objects/interactableObject3"]
+
+[editable path="BG/Map/Base/Objects/PictureFrame"]
+
+[editable path="BG/Map/Base/Objects/PictureFrame/InteractableComponent"]
+
+[editable path="BG/Map/Base/Objects/BigBall"]

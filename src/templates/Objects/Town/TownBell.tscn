@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Scripts/Objects/InteractableObject.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/UI/icons/icon.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/vfx/light/player_light.png" type="Texture" id=4]
+
+
+
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="TownBell" type="StaticBody2D"]
+position = Vector2( 455.627, 280.776 )
+scale = Vector2( 0.142891, 3.21973 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, -29.7734 )
+frames = SubResource( 1 )
+
+[node name="Sprite2" type="AnimatedSprite" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 10.1548, -70.3338 )
+scale = Vector2( 5.01957, 0.361653 )
+frames = SubResource( 1 )
+
+[node name="BodyShape" type="CollisionShape2D" parent="."]
+visible = false
+disabled = true
+
+[node name="Shadow2" type="Sprite" parent="."]
+modulate = Color( 0.176471, 0.176471, 0.176471, 0.513726 )
+position = Vector2( 10.8391, 3.09521 )
+scale = Vector2( 0.928502, 0.0185228 )
+texture = ExtResource( 4 )

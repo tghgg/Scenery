@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/textures/UI/panels/button-norm.svg" type="Texture" id=1]
+[ext_resource path="res://src/Templates/VFX/BaseEffect.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+light_mode = 1
+
+[node name="Flash" instance=ExtResource( 2 )]
+z_index = 1000
+z_as_relative = false
+
+[node name="AnimationPlayer" parent="." index="0"]
+root_node = NodePath("../Sprite")
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+self_modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+material = SubResource( 2 )
+position = Vector2( 867.89, 582.39 )
+scale = Vector2( 18.9095, 14.3765 )
+texture = ExtResource( 1 )

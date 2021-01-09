@@ -1,0 +1,345 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Templates/Objects/Trees/Tree3.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Templates/Objects/Trees/Tree1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Templates/Objects/Trees/TreeClump.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Templates/NPCs/GenericNPC.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Templates/NPCs/DisappearingNPC.tscn" type="PackedScene" id=5]
+
+
+[sub_resource type="GDScript" id=1]
+resource_local_to_scene = true
+script/source = "extends \"res://src/Scripts/NPC.gd\"
+
+# Dialogue handler
+func talk() -> void:
+	# Talk if the character has dialogue
+	if (interaction_script):
+		global.set_can_talk(false)
+		MSG.start_dialogue(interaction_script, self)
+		# Some space to add dynamic events here
+		#yield(global, 'dialogue_finished')
+	else:
+		print('No dialogue available for the character')
+"
+
+[sub_resource type="GDScript" id=2]
+resource_local_to_scene = true
+script/source = "extends \"res://src/Scripts/NPC.gd\"
+
+export (String) var condition
+
+# Specify the condition for the NPC to not appear in the scene
+func _ready() -> void:
+	if global.get_save_data().global.has(condition):
+		queue_free()
+
+# Dialogue handler
+func talk() -> void:
+	# Talk if the character has dialogue
+	if (interaction_script):
+		global.set_can_talk(false)
+		MSG.start_dialogue(interaction_script, self)
+		# Some space to add dynamic events here
+
+		yield(global, 'dialogue_finished')
+
+	else:
+		print('No dialogue available for the character')
+"
+
+[node name="YSort3" type="YSort"]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Tree" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 824.132, 623.196 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree2" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 1027.03, 495.051 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree3" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 1769.2, 457.676 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree4" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 1953.41, 609.847 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree5" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 1918.7, 1279.94 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree6" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 1699.79, 1450.8 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree7" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 1093.77, 1480.16 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree8" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 842.82, 1365.37 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree9" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 497.151, 1682.53 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree10" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 2542.65, 1572.06 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree11" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 2613.93, 467.341 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree12" type="StaticBody2D" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 308.28, 285.598 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree13" type="StaticBody2D" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 1181.92, 286.367 )
+scale = Vector2( 0.93461, 1.19569 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree14" type="StaticBody2D" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 1657.58, 168.901 )
+scale = Vector2( 1.28749, 1.64714 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree15" type="StaticBody2D" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 1892.51, 38.0867 )
+scale = Vector2( 1.28749, 1.64714 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree16" type="StaticBody2D" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 979.478, 67.4532 )
+scale = Vector2( 1.28749, 1.64714 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="YSort2" type="YSort" parent="."]
+
+[node name="GenericNPC2" type="StaticBody2D" parent="YSort2" instance=ExtResource( 4 )]
+position = Vector2( 783.321, 754.597 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+interaction_script = "res://assets/dialogues/JSON Dialogues/Day1-Morning/Hub3ChatSermon.json"
+
+[node name="GenericNPC13" type="StaticBody2D" parent="YSort2" instance=ExtResource( 4 )]
+position = Vector2( 2397.42, 595.207 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GenericNPC" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 1260.47, 491.496 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC3" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 1851.59, 740.59 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC4" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 1315.05, 889.806 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC5" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 1711.9, 1004.1 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC6" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 1061.07, 696.143 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC7" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 1578.56, 454.858 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC8" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 1425.82, 1082.77 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+interaction_script = "res://assets/dialogues/JSON Dialogues/Day1-Morning/Hub3ChatNotice.json"
+condition = "exploring_town"
+
+[node name="GenericNPC9" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 2237.58, 709.416 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC10" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 1649.27, 669.818 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC11" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 1043.99, 932.862 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC15" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 2101.82, 904.578 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC16" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 2107.47, 904.578 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC17" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 2585.48, 720.73 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC18" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 2461.03, 1091.25 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="GenericNPC19" type="StaticBody2D" parent="YSort2" instance=ExtResource( 5 )]
+position = Vector2( 2367.69, 913.063 )
+scale = Vector2( 0.93461, 1.19569 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+condition = "exploring_town"
+
+[node name="TreeClump" type="YSort" parent="." instance=ExtResource( 3 )]
+position = Vector2( 190.703, 1415.44 )
+rotation = 3.14159
+scale = Vector2( 0.560115, -0.560115 )
+
+[node name="TreeClump2" type="YSort" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2449.48, 1288.31 )
+scale = Vector2( 0.653989, 0.653989 )
+
+[node name="TreeClump3" type="YSort" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2190.97, -500.066 )
+scale = Vector2( 0.346547, 0.346547 )
+
+[node name="TreeClump4" type="YSort" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2585.09, -487.353 )
+scale = Vector2( 0.346547, 0.346547 )
+
+[node name="TreeClump5" type="YSort" parent="." instance=ExtResource( 3 )]
+position = Vector2( 635.679, -610.25 )
+scale = Vector2( 0.346547, 0.346547 )
+
+[node name="TreeClump6" type="YSort" parent="." instance=ExtResource( 3 )]
+position = Vector2( 194.942, -550.921 )
+scale = Vector2( 0.346547, 0.346547 )

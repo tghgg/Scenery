@@ -1,0 +1,178 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Templates/Levels/BaseTileScene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/textures/tilesets/town/town.tres" type="TileSet" id=2]
+[ext_resource path="res://src/Templates/Objects/Trees/Tree3.tscn" type="PackedScene" id=3]
+
+[node name="Lakeside" instance=ExtResource( 1 )]
+
+[node name="Map" parent="BG" index="0"]
+tile_set = ExtResource( 2 )
+tile_data = PoolIntArray( 65531, 12, 0, 65532, 12, 0, 65533, 12, 0, 65534, 12, 0, 65535, 12, 0, 0, 8, 0, 4, 8, 0, 8, 8, 0, 12, 8, 0, 16, 8, 0, 20, 8, 0, 24, 8, 0, 131067, 12, 0, 131068, 12, 0, 131069, 12, 0, 131070, 12, 0, 131071, 12, 0, 196603, 12, 0, 196604, 12, 0, 196605, 12, 0, 196606, 12, 0, 196607, 12, 0, 262139, 12, 0, 262140, 12, 0, 262141, 12, 0, 262142, 12, 0, 262143, 12, 0, 327675, 12, 0, 327676, 12, 0, 327677, 12, 0, 327678, 12, 0, 327679, 12, 0, 262144, 8, 0, 262148, 8, 0, 262152, 8, 0, 262156, 8, 0, 262160, 8, 0, 262164, 8, 0, 262168, 8, 0, 393211, 12, 0, 393212, 12, 0, 393213, 12, 0, 393214, 12, 0, 393215, 12, 0, 458747, 12, 0, 458748, 12, 0, 458749, 12, 0, 458750, 12, 0, 458751, 12, 0, 524283, 12, 0, 524284, 12, 0, 524285, 12, 0, 524286, 12, 0, 524287, 12, 0, 589819, 12, 0, 589820, 12, 0, 589821, 12, 0, 589822, 12, 0, 589823, 12, 0, 524288, 8, 0, 524292, 8, 0, 524296, 8, 0, 524300, 8, 0, 524304, 8, 0, 524308, 8, 0, 524312, 8, 0, 655355, 12, 0, 655356, 12, 0, 655357, 12, 0, 655358, 12, 0, 655359, 12, 0, 720891, 12, 0, 720892, 12, 0, 720893, 12, 0, 720894, 12, 0, 720895, 12, 0, 786427, 12, 0, 786428, 12, 0, 786429, 12, 0, 786430, 12, 0, 786431, 12, 0, 851963, 12, 0, 851964, 12, 0, 851965, 12, 0, 851966, 12, 0, 851967, 12, 0, 786454, 8, 0, 786456, 8, 0 )
+
+[node name="TileMap" type="TileMap" parent="BG/Map" index="0"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( 0, 18, 0, 1, 18, 0, 2, 18, 0, 3, 18, 0, 4, 18, 0, 5, 18, 0, 6, 18, 0, 7, 18, 0, 8, 18, 0, 9, 18, 0, 10, 18, 0, 11, 18, 0, 12, 18, 0, 13, 18, 0, 14, 18, 0, 15, 18, 0, 16, 18, 0, 17, 18, 0, 18, 18, 0, 19, 18, 0, 65536, 18, 0, 65537, 18, 0, 65538, 18, 0, 65539, 18, 0, 65540, 18, 0, 65541, 18, 0, 65542, 18, 0, 65543, 18, 0, 65544, 18, 0, 65545, 18, 0, 65546, 18, 0, 65547, 18, 0, 65548, 18, 0, 65549, 18, 0, 65550, 18, 0, 65551, 18, 0, 65552, 18, 0, 65553, 18, 0, 65554, 18, 0, 131072, 18, 0, 131073, 18, 0, 131074, 18, 0, 131075, 18, 0, 131076, 18, 0, 131077, 18, 0, 131078, 18, 0, 131079, 18, 0, 131080, 18, 0, 131081, 18, 0, 131082, 18, 0, 131083, 18, 0, 131084, 18, 0, 131085, 18, 0, 131086, 18, 0, 131087, 18, 0, 131088, 18, 0, 196609, 18, 0, 196611, 18, 0, 196612, 18, 0, 196613, 18, 0, 196614, 18, 0, 196615, 18, 0, 196616, 18, 0, 196617, 18, 0, 196618, 18, 0, 196619, 18, 0, 196620, 18, 0, 196621, 18, 0, 196622, 18, 0, 196623, 18, 0, 262148, 18, 0, 262149, 18, 0, 262150, 18, 0, 262151, 18, 0, 262152, 18, 0, 262153, 18, 0, 262154, 18, 0, 262155, 18, 0, 262156, 18, 0, 262157, 18, 0, 262158, 18, 0, 589832, 12, 0, 589833, 12, 0, 589834, 12, 0, 589835, 12, 0, 655364, 12, 0, 655365, 12, 0, 655366, 12, 0, 655367, 12, 0, 655368, 12, 0, 655369, 12, 0, 655370, 12, 0, 655371, 12, 0, 655372, 12, 0, 655373, 12, 0, 655374, 12, 0, 655375, 12, 0, 720897, 12, 0, 720898, 12, 0, 720899, 12, 0, 720900, 12, 0, 720901, 12, 0, 720902, 12, 0, 720903, 12, 0, 720904, 12, 0, 720905, 12, 0, 720906, 12, 0, 720907, 12, 0, 720908, 12, 0, 720909, 12, 0, 720910, 12, 0, 720911, 12, 0, 720912, 12, 0, 720913, 12, 0, 720914, 12, 0, 786432, 12, 0, 786433, 12, 0, 786434, 12, 0, 786435, 12, 0, 786436, 12, 0, 786437, 12, 0, 786438, 12, 0, 786439, 12, 0, 786440, 12, 0, 786441, 12, 0, 786442, 12, 0, 786443, 12, 0, 786444, 12, 0, 786445, 12, 0, 786446, 12, 0, 786447, 12, 0, 786448, 12, 0, 786449, 12, 0, 786450, 12, 0, 786451, 12, 0, 786452, 12, 0, 786453, 12, 0, 851968, 12, 0, 851969, 12, 0, 851970, 12, 0, 851971, 12, 0, 851972, 12, 0, 851973, 12, 0, 851974, 12, 0, 851975, 12, 0, 851976, 12, 0, 851977, 12, 0, 851978, 12, 0, 851979, 12, 0, 851980, 12, 0, 851981, 12, 0, 851982, 12, 0, 851983, 12, 0, 851984, 12, 0, 851985, 12, 0, 851986, 12, 0, 851987, 12, 0, 851988, 12, 0, 851989, 12, 0, 851990, 12, 0, 851991, 12, 0, 851992, 12, 0, 917504, 12, 0, 917505, 12, 0, 917506, 12, 0, 917507, 12, 0, 917508, 12, 0, 917509, 12, 0, 917510, 12, 0, 917511, 12, 0, 917512, 12, 0, 917513, 12, 0, 917514, 12, 0, 917515, 12, 0, 917516, 12, 0, 917517, 12, 0, 917518, 12, 0, 917519, 12, 0, 917520, 12, 0, 917521, 12, 0, 917522, 12, 0, 917523, 12, 0, 917524, 12, 0, 917525, 12, 0, 917526, 12, 0, 917527, 12, 0, 917528, 12, 0, 917529, 12, 0, 983040, 12, 0, 983041, 12, 0, 983042, 12, 0, 983043, 12, 0, 983044, 12, 0, 983045, 12, 0, 983046, 12, 0, 983047, 12, 0, 983048, 12, 0, 983049, 12, 0, 983050, 12, 0, 983051, 12, 0, 983052, 12, 0, 983053, 12, 0, 983054, 12, 0, 983055, 12, 0, 983056, 12, 0, 983057, 12, 0, 983058, 12, 0, 983059, 12, 0, 983060, 12, 0, 983061, 12, 0, 983062, 12, 0, 983063, 12, 0, 983064, 12, 0, 983065, 12, 0, 983066, 12, 0, 983067, 12, 0 )
+
+[node name="Sprite" parent="BG/Map/Base" index="0"]
+texture = null
+
+[node name="Tree" parent="BG/Map/Base/Objects" index="0" instance=ExtResource( 3 )]
+position = Vector2( 2289.76, 1033.23 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree2" parent="BG/Map/Base/Objects" index="1" instance=ExtResource( 3 )]
+position = Vector2( 2497.41, 429.154 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree3" parent="BG/Map/Base/Objects" index="2" instance=ExtResource( 3 )]
+position = Vector2( 2554.05, 719.868 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree4" parent="BG/Map/Base/Objects" index="3" instance=ExtResource( 3 )]
+position = Vector2( 2233.13, 765.174 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree5" parent="BG/Map/Base/Objects" index="4" instance=ExtResource( 3 )]
+position = Vector2( 2588.02, 1070.99 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree6" parent="BG/Map/Base/Objects" index="5" instance=ExtResource( 3 )]
+position = Vector2( 2569.15, 1240.89 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree14" parent="BG/Map/Base/Objects" index="6" instance=ExtResource( 3 )]
+position = Vector2( 2696.13, 1077.68 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree15" parent="BG/Map/Base/Objects" index="7" instance=ExtResource( 3 )]
+position = Vector2( 2903.78, 473.601 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree16" parent="BG/Map/Base/Objects" index="8" instance=ExtResource( 3 )]
+position = Vector2( 2960.42, 764.315 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree17" parent="BG/Map/Base/Objects" index="9" instance=ExtResource( 3 )]
+position = Vector2( 2639.5, 809.621 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree18" parent="BG/Map/Base/Objects" index="10" instance=ExtResource( 3 )]
+position = Vector2( 2994.39, 1115.44 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree19" parent="BG/Map/Base/Objects" index="11" instance=ExtResource( 3 )]
+position = Vector2( 2975.52, 1285.34 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree20" parent="BG/Map/Base/Objects" index="12" instance=ExtResource( 3 )]
+position = Vector2( 3102.51, 842.742 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree21" parent="BG/Map/Base/Objects" index="13" instance=ExtResource( 3 )]
+position = Vector2( 3310.16, 238.666 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree22" parent="BG/Map/Base/Objects" index="14" instance=ExtResource( 3 )]
+position = Vector2( 3366.8, 529.38 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree23" parent="BG/Map/Base/Objects" index="15" instance=ExtResource( 3 )]
+position = Vector2( 3045.88, 574.686 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree24" parent="BG/Map/Base/Objects" index="16" instance=ExtResource( 3 )]
+position = Vector2( 3400.77, 880.502 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree25" parent="BG/Map/Base/Objects" index="17" instance=ExtResource( 3 )]
+position = Vector2( 3381.9, 1050.4 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree26" parent="BG/Map/Base/Objects" index="18" instance=ExtResource( 3 )]
+position = Vector2( 3153.31, 1458.65 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree27" parent="BG/Map/Base/Objects" index="19" instance=ExtResource( 3 )]
+position = Vector2( 3360.96, 854.577 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree28" parent="BG/Map/Base/Objects" index="20" instance=ExtResource( 3 )]
+position = Vector2( 3417.6, 1145.29 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree29" parent="BG/Map/Base/Objects" index="21" instance=ExtResource( 3 )]
+position = Vector2( 3096.68, 1190.6 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree30" parent="BG/Map/Base/Objects" index="22" instance=ExtResource( 3 )]
+position = Vector2( 3451.57, 1496.41 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree31" parent="BG/Map/Base/Objects" index="23" instance=ExtResource( 3 )]
+position = Vector2( 3432.7, 1666.31 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree32" parent="BG/Map/Base/Objects" index="24" instance=ExtResource( 3 )]
+position = Vector2( 2702.48, 842.742 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree33" parent="BG/Map/Base/Objects" index="25" instance=ExtResource( 3 )]
+position = Vector2( 2910.13, 238.666 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree34" parent="BG/Map/Base/Objects" index="26" instance=ExtResource( 3 )]
+position = Vector2( 2966.77, 529.38 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree35" parent="BG/Map/Base/Objects" index="27" instance=ExtResource( 3 )]
+position = Vector2( 2645.85, 574.686 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree36" parent="BG/Map/Base/Objects" index="28" instance=ExtResource( 3 )]
+position = Vector2( 3000.74, 880.502 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree37" parent="BG/Map/Base/Objects" index="29" instance=ExtResource( 3 )]
+position = Vector2( 2981.87, 1050.4 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree7" parent="BG/Map/Base/Objects" index="30" instance=ExtResource( 3 )]
+position = Vector2( 13.136, 308.338 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree8" parent="BG/Map/Base/Objects" index="31" instance=ExtResource( 3 )]
+position = Vector2( 235.89, 485.787 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree9" parent="BG/Map/Base/Objects" index="32" instance=ExtResource( 3 )]
+position = Vector2( -58.5985, 576.399 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree10" parent="BG/Map/Base/Objects" index="33" instance=ExtResource( 3 )]
+position = Vector2( 198.135, 765.174 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree11" parent="BG/Map/Base/Objects" index="34" instance=ExtResource( 3 )]
+position = Vector2( -28.3945, 916.194 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree12" parent="BG/Map/Base/Objects" index="35" instance=ExtResource( 3 )]
+position = Vector2( 232.115, 1037.01 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="Tree13" parent="BG/Map/Base/Objects" index="36" instance=ExtResource( 3 )]
+position = Vector2( -1.96593, 1222.01 )
+scale = Vector2( 0.768105, 0.768105 )
+
+[node name="ExitNode" parent="BG/Map" index="2"]
+position = Vector2( 1298.25, 1008.74 )
+
+[node name="Bounds" parent="BG/Map" index="3"]
+visible = false
+collision_layer = 0
+collision_mask = 0
+
+[editable path="BG/Map"]
